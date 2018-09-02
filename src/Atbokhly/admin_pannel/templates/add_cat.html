@@ -1,0 +1,43 @@
+{% extends 'base/base_chief.html' %}
+        {% block title %}Add Category{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/feedback_style.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="addcat">
+        	<div class="container">
+                {% if request.user.is_superuser %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {% if form.category_name %}
+                        {% if form.category_name.errors %}
+                        <div class="col-xs-12 alert alert-danger">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            <strong>{{ form.category_name.errors|escape }}</strong>
+                        </div>
+                        {% endif %}
+                        <label>القسم:</label>
+                        {{form.category_name}}
+                    {% endif %}
+
+
+                    {% if form.ingredient_name %}
+                        {% if form.ingredient_name.errors %}
+                        <div class="col-xs-12 alert alert-danger">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            <strong>{{ form.ingredient_name.errors|escape }}</strong>
+                        </div>
+                        {% endif %}
+                        <label>المكون:</label>
+                        {{form.ingredient_name}}
+                    {% endif %}
+
+                    <input type="submit" value="Save" />
+                </form>
+                {% endif %}
+        	</div>
+        </section>
+        {% endblock content %}

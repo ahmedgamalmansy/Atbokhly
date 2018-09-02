@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Atbokhly | {% block title %}{% endblock %}</title>
+        {% load static %}
+        <link rel="icon" href="{% static 'images/logo.png' %}">
+        {% include 'static/chief/css.html' %}
+
+        {% block css %}{% endblock css %}
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- start header -->
+
+        <header>
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-5 text-center col-sm-push-3 meal_search">
+                        <form method="GET" action="{% url 'search:search_by_meal_name'  %}">
+                            <input name="q" required="required" value="{{request.GET.q}}" placeholder="بحث بأسم الوجبه">
+                            <button type="submit">
+                                <i class="fa fa-search fa-lg"></i>
+                            </button>
+                        </form> <!-- search by meal name -->
+                    </div>
+
+                    <div class="col-sm-3 col-xs-5 col-md-pull-6 col-sm-pull-5 logo">
+                        {% if user.is_authenticated %}
+                        {% ifequal user.groups.all.0.name 'chiefs' %}
+                            <a href="/Home/chief">Atbokhly</a>
+                        {% else %}
+                            {% if user.is_superuser %}
+                            <a href="{% url 'admin_pannel:home' %}">Atbokhly</a>
+                            {% else %}
+                            <a href="/">Atbokhly</a>
+                            {% endif %}
+                        {% endifequal %}
+                        {% else %}
+                            <a href="/">Atbokhly</a>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-md-3 col-sm-4 col-xs-7 tgl_btn">
+                        <div class="authenticate">
+                            {% if user.is_authenticated %}
+                                {% if user.is_superuser %}
+                                <a href="{% url 'admin_pannel:logout' %}" >تسجيل خروج <i class="fa fa-sign-out"></i></a>
+                                {% else %}
+                                <a href="{% url 'accounts:logout' %}" >تسجيل خروج <i class="fa fa-sign-out"></i></a>
+                                {% endif %}
+                            {% else %}
+                            <a href="/auth/login" >تسجيل دخول <i class="fa fa-sign-out"></i></a>
+                            {% endif %}
+                        </div>
+                        <button id="toggle_btn" data-toggle="modal">
+                            <i class="fa fa-arrow-circle-left" id="form_arrow"></i>
+                            <span class="hidden-xs">القائمة</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- end header -->
+
+        <!-- start navbar -->
+
+        <nav id="navbar">
+            {% if user.is_authenticated %}
+            <div class="photo">
+                <li class="content list-unstyled">
+                    {% ifequal user.groups.all.0.name 'normal_users' %}
+                        {% if user.userprofile.img %}
+                            <img src="{{ user.userprofile.img.url }}" title="{{request.user.first_name}} {{request.user.last_name}}">
+                        {% else %}
+                            {% load static %}
+                            <!--<i class="fa fa-user-circle" title="{{request.user.first_name}} {{request.user.last_name}}"></i>-->
+                            <img src="{% static 'images/base_profile_photo.jpg' %}" title="{{request.user.first_name}} {{request.user.last_name}}">
+                        {% endif %}
+                    {% else %}
+                        {% if user.chiefprofile.img %}
+                            <img src="{{ user.chiefprofile.img.url }}" title="{{request.user.first_name}} {{request.user.last_name}}">
+                        {% else %}
+                            {% load static %}
+                            <!--<i class="fa fa-user-circle" title="{{request.user.first_name}} {{request.user.last_name}}"></i>&lt;!&ndash;<img src="{% static 'images/hero-2.jpg' %}">&ndash;&gt;-->
+                            <img src="{% static 'images/base_profile_photo.jpg' %}" title="{{request.user.first_name}} {{request.user.last_name}}">
+                        {% endif %}
+                    {% endifequal %}
+
+                    <span>
+                        {% if request.user.first_name|length >= 7 %}
+                            {{ request.user.first_name }}...
+                        {% else %}
+                            {{ request.user.first_name }}
+                            {% if request.user.last_name|length > 5 %}
+                                {{ request.user.last_name | slice:"5" }}...
+                            {% else %}
+                                {{ request.user.last_name | slice:"5" }}
+                            {% endif %}
+                        {% endif %}
+                    </span>
+
+                    <div class="account">
+                        <ul class="list-unstyled">
+                            {% ifequal user.groups.all.0.name 'normal_users' %}
+                            <li><a href="{% url 'user_profile:user-update-profile' request.user.pk %}">Update Account</a></li>
+                            <li><a href="{% url 'user_profile:user-view-profile' request.user.pk %}">View Profile</a></li>
+                            {% else %}
+                            {% if user.is_superuser %}
+                            <li><a href="{% url 'admin_pannel:update-profile' request.user.pk %}">Update Account</a></li>
+                            <li><a href="{% url 'user_profile:chief-view-profile' request.user.pk %}">View Profile</a></li>
+                            <li><a href="{% url 'user_profile:home' %}" target="_blank">View Site</a></li>
+                            {% else %}
+                            <li><a href="{% url 'user_profile:chief-update-profile' request.user.pk %}">Update Account</a></li>
+                            <li><a href="{% url 'user_profile:chief-view-profile' request.user.pk %}">View Profile</a></li>
+                            {% endif %}
+                            {% endifequal %}
+                            <li><a href="{% url 'accounts:change-password' %}">Change Password</a></li>
+                            <li><a href="/email-update" class="mail_link">Change you Email</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </div>
+            {% endif %}
+            <div class="main_nav">
+                <ul class="list-unstyled">
+                    {% if user.is_superuser %}
+                    <li><a href="{% url 'admin_pannel:home' %}">الرئيسية</a></li>
+                    <li><a href="{% url 'admin_pannel:chart_view' %}">charts</a></li>
+                    <hr>
+                    <li><a href="{% url 'admin_pannel:view-categories'%}">الاقسام</a></li>
+                    <li><a href="{% url 'admin_pannel:view-ingredients'%}">المكونات</a></li>
+                    <li><a href="{% url 'admin_pannel:view-meals'%}">الوجبات</a></li>
+                    <hr>
+                    <li><a href="{% url 'admin_pannel:view-chef-Requests' %}">الطلبات</a></li>
+                    <li><a href="{% url 'admin_pannel:view-contacts' %}">الرسائل</a></li>
+                    {% else %}
+
+                    <li>
+                        {% if user.is_authenticated %}
+                        {% ifequal user.groups.all.0.name 'chiefs' %}
+                            <a href="/Home/chief">الرئيسية</a>
+                        {% else %}
+                            <a href="/">الرئيسية</a>
+                        {% endifequal %}
+                        {% else %}
+                            <a href="/">الرئيسية</a>
+                        {% endif %}
+                    </li>
+                    <li><a href="/about-us">عن الموقع</a></li>
+                    <li><a href="{% url 'contact:email' %}">تواصل معنا</a></li>
+                    <hr>
+                    {% if user.is_authenticated %}
+                    {% ifequal user.groups.all.0.name 'normal_users' %}
+                        <li><a href="{% url 'search:most-liked-meals' request.user.pk %}">الوجبات المفضلة</a></li>
+                        <li><a href="{% url 'search:most-search-meals' request.user.pk %}">الاكثر بحثا</a></li>
+                        <li><a href="{% url 'search:view_history' %}">التــاريـخ</a></li>
+                    {% else %}
+                        <li><a href="{% url 'meal:addmeal' request.user.pk %}">إضافة وجبة</a></li>
+                    {% endifequal %}
+                    {% endif%}
+                    {% endif %}
+
+                </ul>
+                <img src="{% static 'images/logo.png' %}">
+            </div>
+        </nav>
+
+        <!-- end navbar -->
+
+
+        {% block content %}
+
+        {% endblock %}
+
+        <!-- start footer -->
+        {% if not user.is_superuser %}
+        <footer class="col-xs-12 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 copyrights">
+                        <p>All Copyrights © 2018 reserved for <a href="/">Atbokhly</a></p>
+                    </div>
+
+                    <div class="col-sm-4 policies text-center">
+                        <p>Meet our <a href="/policies">Policies</a></p>
+                    </div>
+
+                    <div class="col-sm-4 social">
+                        <ul class="list-unstyled list-inline">
+                            <li><a href="https://www.facebook.com" class="facebook" target="_blank"><i class="fa fa-facebook fa-lg"></i></a></li>
+                            <li><a href="https://www.twitter.com" class="twitter" target="_blank"><i class="fa fa-twitter fa-lg"></i></a></li>
+                            <li><a href="https://www.google.com" class="google" target="_blank"><i class="fa fa-google-plus fa-lg"></i></a></li>
+                            <li><a href="https://www.istagram.com" class="insta" target="_blank"><i class="fa fa-instagram fa-lg"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        {% endif %}
+
+        <a href="javascript:;" class="scroll_up"><i class="fa fa-caret-up fa-lg"></i></a>
+        <!-- start footer -->
+
+        <!-- start scripts -->
+        {% include 'static/chief/js.html' %}
+        {% block javascript %}{% endblock %}
+
+        <!-- end scipts -->
+    </body>
+</html>

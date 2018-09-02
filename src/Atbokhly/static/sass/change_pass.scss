@@ -1,0 +1,91 @@
+@import 'variables';
+@import 'methods';
+
+.update_sec{
+    margin-top: 100px;
+    min-height: 600px;
+    form{
+        background: rgba(1,1,1,.7);
+        padding: 30px 50px;
+        border-radius: 20px;
+        width: 50%;
+        margin: auto;
+        h2{
+            color: $secondColor;
+            text-align: center;
+            font-weight: 700;
+        }
+        p{
+            color: #ddd;
+            text-align: center;
+        }
+
+        input{
+            width: 100%;
+            display: inline-block;
+            background: transparent;
+            padding: 5px;
+            text-indent: 10px;
+            border: 1px solid $mainColor;
+            color: #1B435D;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        label{
+            color: #eee;
+            display: block;
+        }
+        span{
+            padding: 10px;
+            color: $secondColor;
+            ul{
+                margin: 0px;
+                padding: 0px;
+                padding-left: 15px;
+                li{
+                    color: #ddd;
+                }
+            }
+        }
+        .errorlist li{
+            color: red;
+        }
+        button{
+            width: 40%;
+            margin: 20px 30%;
+            background: $mainColor;
+            border: 1px solid $mainColor;
+            padding: 5px;
+            font-size: 16px;
+            color: $secondColor;
+            font-weight: 700;
+            @include transition(all, .5s, linear);
+            &:hover{
+                color: $mainColor;
+                background: $secondColor;
+                letter-spacing: 1px;
+                
+            }
+        }
+    }
+}
+
+@media (max-width: 767px){
+    .update_sec{
+        margin-top: 150px;
+        form{
+            width: 80%;
+            button{
+                margin: 20px auto;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px){
+    .update_sec form{
+        padding: 30px 10px;
+        width: 100%;
+    }
+}

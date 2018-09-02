@@ -1,0 +1,84 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Update Meal{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/feedback_style.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="addmeal">
+        	<div class="container">
+                {% if state == None and not request.user.is_superuser%}
+                    <h1>your request is pending</h1>
+                {% else %}
+                    {% if state == True or request.user.is_superuser %}
+                        <div class="row">
+                        {% if error %}
+                        {{error}}
+                        {% endif %}
+                        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                            {% if form.meal_name.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.meal_name.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <label>اسم الوجبة:</label>
+                            {{form.meal_name}}
+
+                            {% if form.meal_recipe.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.meal_recipe.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <label>طريقة التحضير:</label>
+                            {{form.meal_recipe}}
+
+                            {% if form.meal_category.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.meal_category.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <label>التصنيف :</label>
+                            {{form.meal_category}}
+
+                            {% if form.ingredients.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.ingredients.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <label>المكونات : اضغط ctrl ثم قم باختيار المكونات</label>
+                            {{form.ingredients}}
+
+                            {% if form.img.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.img.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <label>الصورة :</label>
+                            {{form.img}}
+
+                            {% if form.video.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.video.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <label>الفيديو :</label>
+                            {{form.video}}
+                            <input type="submit" value="Save" />
+                        </form>
+
+                    </div>
+                    {% else %}
+                        <h1>your request has been rejected</h1>
+                    {% endif %}
+                {% endif %}
+        	</div>
+        </section>
+        {% endblock content %}

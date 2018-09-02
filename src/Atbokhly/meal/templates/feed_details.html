@@ -1,0 +1,28 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Feedback Details{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/feedback_style.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="feedback">
+        	<div class="container">
+                {% ifequal user.chiefprofile.state None %}
+                    <h1>your request is pending</h1>
+                {% else %}
+                    {% ifequal user.chiefprofile.state True %}
+                    <div class="row">
+                        <p><span>اسم الوجبه </span>{{feedback.meal_id}}</p>
+                        <p><span>اسم المرسل </span>{{feedback.name}}</p>
+                        <p><span>البريـد الإلكترونى </span>{{feedback.user_mail}}</p>
+                        <p><span>مضمون الرساله </span>{{feedback.content}}</p>
+                    </div>
+                    {% else %}
+                        <h1>your request has been rejected</h1>
+                    {% endifequal %}
+                {% endifequal %}
+        	</div>
+        </section>
+        {% endblock content %}

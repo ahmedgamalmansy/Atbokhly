@@ -1,0 +1,98 @@
+/**** E43A19 ****/
+.contact {
+  min-height: 600px;
+  margin-top: 100px;
+}
+.contact .content {
+  position: relative;
+  margin: 40px auto;
+  background-size: 100% auto;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 50px;
+  box-sizing: border-box;
+}
+.contact .content .title {
+  margin-bottom: 50px;
+}
+.contact .content .title h3 {
+  font-size: 35px;
+  color: #1B435D;
+  font-weight: 700;
+  font-family: 'Lato',sans-serif;
+}
+.contact .content .contacts {
+  width: 100%;
+  padding-bottom: 50px;
+  margin-top: 100px;
+}
+.contact .content .contacts .location, .contact .content .contacts .mail, .contact .content .contacts .phones {
+  margin-bottom: 10px;
+}
+.contact .content .contacts .location i, .contact .content .contacts .mail i, .contact .content .contacts .phones i {
+  color: #1B435D;
+  padding-right: 10px;
+}
+.contact .content .contacts .location span, .contact .content .contacts .mail span, .contact .content .contacts .phones span {
+  font-size: 18px;
+  color: #aaa;
+}
+.contact .content form {
+  margin-top: 50px;
+  direction: rtl;
+}
+.contact .content form div {
+  margin-bottom: 15px;
+}
+.contact .content form input, .contact .content form textarea {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #1B435D;
+  color: #ddd;
+  padding: 5px;
+  text-indent: 10px;
+  font-size: 16px;
+}
+.contact .content form .button button {
+  width: 100%;
+  background: #1B435D;
+  border: 1px solid #1B435D;
+  color: #fff;
+  padding: 5px 0px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+.contact .content form .button button span {
+  font-weight: 700;
+}
+.contact .content form .button button:hover {
+  background: #fff;
+  color: #1B435D;
+}
+.contact .content::before {
+  content: '';
+  position: absolute;
+  background: rgba(1, 1, 1, 0.9);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 480px) {
+  .contact .content {
+    padding: 0px;
+  }
+  .contact .contacts .location i, .contact .contacts .mail i, .contact .contacts .phones i {
+    font-size: 20px;
+  }
+  .contact .contacts .location span, .contact .contacts .mail span, .contact .contacts .phones span {
+    font-size: 14px !important;
+  }
+}
+
+/*# sourceMappingURL=contact.css.map */

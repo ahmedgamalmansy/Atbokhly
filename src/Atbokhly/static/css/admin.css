@@ -1,0 +1,180 @@
+/**** E43A19 ****/
+body {
+  background: url(../images/basil-delicious-food-459469.jpg) no-repeat center center fixed;
+  background-size: 100% 100%;
+}
+
+* {
+  font-family: Microsoft Sans Serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+a, a:hover, a:focus {
+  text-decoration: none;
+}
+
+.scroll_up {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  display: none;
+  z-index: 9999;
+}
+.scroll_up i {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background: #1B435D;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 2.3em;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.scroll_up i:hover {
+  color: #1B435D;
+  background: #fff;
+}
+
+.home {
+  min-height: 600px;
+  margin-top: 70px;
+}
+.home .title {
+  padding: 15px;
+}
+.home .title h1 {
+  background: rgba(1, 1, 1, 0.7);
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+  color: #fff;
+}
+.home .block {
+  margin-bottom: 20px;
+}
+.home .block .data {
+  background: rgba(13, 41, 59, 0.9);
+  border-radius: 10px;
+  min-height: 100px;
+  padding: 10px;
+}
+.home .block .data h3 {
+  color: #fff;
+}
+.home .block .data p {
+  text-shadow: 1px 1px 10px #ddd;
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.home .block .data a {
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: #428bca;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.home .block .data a:hover {
+  -webkit-box-shadow: 1px 1px 10px #fff;
+  -moz-box-shadow: 1px 1px 10px #fff;
+  -o-box-shadow: 1px 1px 10px #fff;
+  box-shadow: 1px 1px 10px #fff;
+}
+
+.objs, .users, .contacts {
+  min-height: 600px;
+  margin-top: 120px;
+}
+.objs .searchForm input, .users .searchForm input, .contacts .searchForm input {
+  width: 100%;
+  padding: 5px;
+  text-indent: 10px;
+  border: 1px solid #1B435D;
+  border-radius: 5px;
+  color: #1B435D;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.objs .meal_obj, .objs .contact_obj, .users .meal_obj, .users .contact_obj, .contacts .meal_obj, .contacts .contact_obj {
+  background: #1B435D;
+  margin: 5px;
+  padding: 10px;
+  direction: rtl;
+}
+.objs .meal_obj div, .objs .contact_obj div, .users .meal_obj div, .users .contact_obj div, .contacts .meal_obj div, .contacts .contact_obj div {
+  display: inline-block;
+  color: #aaa;
+  font-size: 20px;
+}
+.objs .meal_obj div span, .objs .contact_obj div span, .users .meal_obj div span, .users .contact_obj div span, .contacts .meal_obj div span, .contacts .contact_obj div span {
+  color: #fff;
+  font-size: 16px;
+}
+.objs .meal_obj div .chart_link, .objs .contact_obj div .chart_link, .users .meal_obj div .chart_link, .users .contact_obj div .chart_link, .contacts .meal_obj div .chart_link, .contacts .contact_obj div .chart_link {
+  font-size: 16px;
+  padding: 0px;
+}
+.objs .meal_obj .conform_delete_popup, .objs .contact_obj .conform_delete_popup, .users .meal_obj .conform_delete_popup, .users .contact_obj .conform_delete_popup, .contacts .meal_obj .conform_delete_popup, .contacts .contact_obj .conform_delete_popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 1, 1, 0.7);
+  top: 0px;
+  right: 0px;
+  display: none;
+  z-index: 9999;
+}
+.objs .meal_obj .conform_delete_popup .delete_confirm, .objs .contact_obj .conform_delete_popup .delete_confirm, .users .meal_obj .conform_delete_popup .delete_confirm, .users .contact_obj .conform_delete_popup .delete_confirm, .contacts .meal_obj .conform_delete_popup .delete_confirm, .contacts .contact_obj .conform_delete_popup .delete_confirm {
+  background: #ddd;
+  top: 300px;
+  padding: 50px 10px;
+  direction: ltr;
+  -webkit-box-shadow: 1px 1px 10px #ddd;
+  -moz-box-shadow: 1px 1px 10px #ddd;
+  -o-box-shadow: 1px 1px 10px #ddd;
+  box-shadow: 1px 1px 10px #ddd;
+  border-radius: 10px;
+}
+.objs .meal_obj .conform_delete_popup .delete_confirm p, .objs .contact_obj .conform_delete_popup .delete_confirm p, .users .meal_obj .conform_delete_popup .delete_confirm p, .users .contact_obj .conform_delete_popup .delete_confirm p, .contacts .meal_obj .conform_delete_popup .delete_confirm p, .contacts .contact_obj .conform_delete_popup .delete_confirm p {
+  margin-bottom: 50px;
+  color: red;
+}
+.objs .meal_obj .conform_delete_popup .delete_confirm a, .objs .contact_obj .conform_delete_popup .delete_confirm a, .users .meal_obj .conform_delete_popup .delete_confirm a, .users .contact_obj .conform_delete_popup .delete_confirm a, .contacts .meal_obj .conform_delete_popup .delete_confirm a, .contacts .contact_obj .conform_delete_popup .delete_confirm a {
+  padding: 10px 30px;
+  background: #1B435D;
+  color: #fff;
+  border: 1px solid #1B435D;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.objs .meal_obj .conform_delete_popup .delete_confirm a:hover, .objs .contact_obj .conform_delete_popup .delete_confirm a:hover, .users .meal_obj .conform_delete_popup .delete_confirm a:hover, .users .contact_obj .conform_delete_popup .delete_confirm a:hover, .contacts .meal_obj .conform_delete_popup .delete_confirm a:hover, .contacts .contact_obj .conform_delete_popup .delete_confirm a:hover {
+  background: #ddd;
+  color: #1B435D;
+}
+.objs .add, .users .add, .contacts .add {
+  float: right;
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-right: -5px;
+  padding: 5px 20px;
+  background: #1B435D;
+  -webkit-box-shadow: 1px 0px 10px #ddd;
+  -moz-box-shadow: 1px 0px 10px #ddd;
+  -o-box-shadow: 1px 0px 10px #ddd;
+  box-shadow: 1px 0px 10px #ddd;
+}
+
+/*# sourceMappingURL=admin.css.map */

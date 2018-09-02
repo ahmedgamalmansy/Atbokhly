@@ -1,0 +1,19 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Sign Up{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/search_meals.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+            <section class="search_meals text-center">
+                <div class="container">
+                    {% if request.user.is_superuser %}
+                    <h1>Thanks for activating your email<br>you can now go now to your <a href="{% url 'admin_pannel:home' %}">Home</a> Page</h1>
+                    {% else %}
+                    <h1>Thanks for activating your email<br>you can now go now to your <a href="/">Home</a> Page</h1>
+                    {% endif %}
+                </div>
+            </section>
+        {% endblock content %}

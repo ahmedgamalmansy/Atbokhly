@@ -1,0 +1,71 @@
+{% extends 'base/base_chief.html' %}
+{% block title %}Chief Meals{% endblock title %}
+{% block css %}
+    {% load static %}
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/chief_home.css' %}">-->
+{% endblock css %}
+{% block content %}
+
+        <!-- end profile nav section -->
+
+        <!-- start meals section -->
+
+        <section id="top_meals" class="top_meals chief">
+            <div class="container">
+                {% if user.groups.all.0.name == 'normal_users' or not request.user.is_authenticated or user.groups.all.0.name == 'chiefs' and state == True or request.user.is_superuser %}
+                <!-- controller navbar for filteration -->
+                <div class="text-center links wow fadeInRight animated">
+                    <ul class="list-unstyled filters ">
+                        <li class="filtr-button filtr active"><a href="javascript:;" data-filter="all">الكل</a></li>
+                        {% for cat in categories %}
+                            <li class="filtr-button filtr"><a href="javascript:;" data-filter="{{cat.category_name}}">{{cat.category_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- meals with categories -->
+
+                <div class="wrapper filtr-container">
+                    {% for meal in meals %}
+                        {% for rate in rates %}
+                        {% ifequal rate.meal.id meal.id %}
+                        <div class="col-md-3 col-sm-4 col-xs-6 block filtr-item" data-category="{{meal.meal_category}}" data-sort="value">
+                            <div class="image">
+                                <div class="overley overley-top text-center">
+                                    <a href="{{ meal.img.url }}"  data-caption="{{meal.meal_recipe}}" data-fancybox="image">
+                                        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="/meal/{{meal.id}}" title="view meal"><i class="fa fa-link fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="overley overley-bottom text-center">
+                                    <h5>{{meal.meal_name}}</h5>
+                                    <p>
+                                        {% for ing in meal.ingredients.all %}
+                                        <span> ، {{ing}}</span>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                                <img src="{{ meal.img.url }}" class="wow zoomIn">
+                            </div>
+                            <div class="meal_desc text-center">
+                                <h4>{{meal.meal_name}}</h4>
+                                <div class="col-xs-6 rate">
+                                    <i class="fa fa-star fa-lg"></i>
+                                    <span>{{rate.rate_value}}/5</span>
+                                </div>
+                                <div class="col-xs-6 votes">
+                                    <p><span>{{rate.Votes}} </span>Votes</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endifequal %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- end meals section -->
+
+     {% endblock %}

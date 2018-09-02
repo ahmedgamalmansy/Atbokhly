@@ -1,0 +1,193 @@
+@import 'variables';
+@import 'methods';
+@import 'global';
+
+.history{
+    min-height: 600px;
+    margin-top: 100px;
+    direction: rtl;
+    .container{
+        h1{
+            background: rgba(1,1,1,.7);
+            text-align: center;
+            color: $secondColor;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .clear_link{
+            width: 100%;
+            padding: 10px;
+            #clear{
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                font-family: Microsoft Sans Serif;
+                padding: 5px 10px;
+                background: $mainColor;
+                color: $secondColor;
+                border: 1px solid $mainColor;
+                border-radius: 5px;
+            }
+        }
+        .clear_confirm{
+            display: none;
+            direction: ltr;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(1,1,1,.5);
+            top: 0;
+            right: 0;
+            z-index: 999999;
+            form{
+                //width: 30%;
+                background: $secondColor;
+                position: absolute;
+                top: 30%;
+                //left: 35%;
+                padding: 50px 20px;
+                border-radius: 5px;
+                i{
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    border: 1px solid $mainColor;
+                    padding: 1px;
+                    border-radius: 2px;
+                    cursor: pointer;
+                }
+                p{
+                    font-size: 30px;
+                    color: red;
+                }
+                button,div{
+                    width: 100px;
+                    background: $mainColor;
+                }
+            }
+        }
+        .transaction{
+            padding: 5px;
+            z-index: 1;
+            display: flex;
+
+            .block{
+                width: 100%;
+                background: #eee;//rgba(27, 67, 93,.9);
+                height: 320px;
+                border: 1px solid $mainColor;
+                border-radius: 10px;
+                margin-bottom: 5px;
+                padding: 10px 5px;
+                //overflow: hidden;
+                @include transition(all, .3s, linear);
+                form{
+                    float: right;
+                    padding-right: 10px;
+                    cursor: pointer;
+                    i{
+                    border: 1px solid $mainColor;
+                    padding: 1px;
+                    border-radius: 2px;
+                    }
+                }
+                .time{
+                        color: #333;
+                        font-size: 16px;
+                        padding: 0px;
+                        margin: 0px;
+                        margin-bottom: 5px;
+                        text-align: left;
+                    }
+                .search_context{
+                    padding: 5px 0px;
+                    height: 100px;
+                    overflow: hidden;
+                    @include transition(all, .3s, linear);
+                    h2{
+                        margin: 0px;
+                        color: $secondColor;
+//                        text-align: right;
+                        background: $mainColor;
+                        margin-bottom: 10px;
+                    }
+                    span{
+                        color: #001dff;
+                        font-size: 18px;
+                        word-wrap: break-word;
+                    }
+                }
+
+                .result{
+                    border-top: 1px solid $mainColor;
+                    padding: 10px 0px;
+                    max-height: 170px;
+                    overflow: auto;
+                    h2{
+                        margin: 0px;
+                        color: $mainColor;
+                        position: relative;
+                        margin-bottom: 10px;
+                        //background: $mainColor;
+                        /*
+                        &:after{
+                            content: '______________________';
+                            width: 40%;
+                            overflow: hidden;
+                            position: absolute;
+                            bottom: 0px;
+                            left: 30%;
+                            font-size: 16px;
+                            font-weight: bold;
+                        }*/
+                    }
+                    .meal{
+                        width: 60px;
+                        height: 60px;
+                        margin-bottom: 2px;
+                        border: 1px solid $mainColor;
+                        position: relative;
+                        display: inline-block;
+                        overflow: hidden;
+                        span{
+                            display: block;
+                            border-bottom: 1px solid $mainColor;
+                            font-size: 14px;
+                            height: 20px;
+                        }
+                        img{
+                            display: block;
+                            width: 100%;
+                            height: 40px;
+                        }
+                    }
+
+                }
+                &:hover{
+                    transform: scale(1.05);
+                    background: #ddd;
+                    border-radius: 10px;
+                    z-index: 9999;
+                    .time{
+                        background: #eee;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@media (max-width: 767px) and (min-width: 480px){
+    .history{
+        margin-top: 150px;
+        .container{
+            width: 90%;
+            .transaction{
+                width: 50%;
+            }
+        }
+    }
+}

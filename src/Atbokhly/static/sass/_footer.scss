@@ -1,0 +1,105 @@
+footer{
+    background: $mainColor;
+    margin-top: 50px;
+    padding: 10px 0px;
+    z-index: 9999;
+    .copyrights{
+        p{
+            color: $secondColor;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: left;
+            a{
+                color: $thirdColor;
+                font-weight: 700;
+                padding: 10px 0px;
+                @include transition(all, .3s, linear);
+                &:hover{
+                    color: $secondColor;
+                }
+            }
+        }
+    }
+    .policies{
+        p{
+            color: $secondColor;
+            font-size: 16px;
+            line-height: 40px;
+            a{
+                //color: $thirdColor;
+                font-weight: 700;
+                padding: 10px 0px;
+                @include transition(all, .3s, linear);
+                &:hover{
+                    color: $secondColor;
+                }
+            }
+        }
+    }
+    .social{
+        text-align: right;
+        ul{
+            li{
+                a{
+                    display: inline-block;
+                    color: $secondColor;
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid $secondColor;
+                    border-radius: 50%;
+                    position: relative;
+                    @include transition(all, .3s, linear);
+                    i{
+                        width: 100%;
+                        text-align: center;
+                        line-height: 40px;
+                    }
+                    &:hover{
+                        background: $secondColor;
+                    }
+                }
+                a.facebook{
+                    &:hover{
+                        color: $lastColor;
+                    }
+                }
+                a.twitter{
+                    &:hover{
+                        color: $lastColor;
+                    }
+                }
+                a.google{
+                    &:hover{
+                        color: $lastColor;
+                    }
+                }
+                a.insta{
+                    &:hover{
+                        color: $lastColor;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+
+/*=========================
+    media query
+==========================*/
+
+@media (max-width: 767px){
+    footer{
+        .copyrights p,.social{
+            text-align: center;
+        }
+    }
+}
+@media (max-width: 480px){
+    footer{
+        .social{
+            float: left;
+        }
+    }
+}

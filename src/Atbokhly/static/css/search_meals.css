@@ -1,0 +1,176 @@
+/**** E43A19 ****/
+.search_meals {
+  margin-top: 50px;
+  padding-bottom: 150px;
+  min-height: 600px;
+  overflow: hidden;
+}
+.search_meals .filter_selection {
+  position: relative;
+  padding: 30px 0px;
+  margin-bottom: 20px;
+}
+.search_meals .filter_selection label {
+  float: right;
+}
+.search_meals .filter_selection select {
+  float: right;
+  right: 0px;
+  margin-bottom: 20px;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+.search_meals h1 {
+  background: rgba(1, 1, 1, 0.7);
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  direction: rtl;
+  word-wrap: break-word;
+  font-size: 25px;
+}
+.search_meals .block {
+  height: 550px;
+}
+.search_meals .block .meal {
+  border: 1px solid #1B435D;
+  box-shadow: 2px 2px 5px #1B435D;
+  width: 100%;
+  background: #eee;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.search_meals .block .meal .image {
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  padding: 30px 0px;
+}
+.search_meals .block .meal .image img {
+  height: 150px;
+  width: 85%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px #777, -2px -2px 5px #ddd;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.search_meals .block .meal .image img:hover {
+  transform: scale(1.1, 1.1);
+}
+.search_meals .block .meal .meal_info {
+  padding: 0px 20px 20px;
+}
+.search_meals .block .meal .meal_info h2 {
+  direction: rtl;
+  background: rgba(27, 67, 93, 0.9);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 23px;
+  font-weight: bold;
+  color: #fff;
+}
+.search_meals .block .meal .meal_info h2 i {
+  font-size: .8em;
+}
+.search_meals .block .meal .meal_info h3 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 23px;
+}
+.search_meals .block .meal .meal_info h3 span {
+  font-weight: 700;
+}
+.search_meals .block .meal .meal_info .ingred {
+  margin: 10px 0px 20px;
+}
+.search_meals .block .meal .meal_info .ingred h3 {
+  background: #1B435D;
+  color: #fff;
+  padding: 10px 0px;
+  position: relative;
+  cursor: default;
+}
+.search_meals .block .meal .meal_info .ingred h3::after {
+  content: '\f0d8';
+  font-family: FontAwesome;
+  font-size: 1.5em;
+  color: #eee;
+  position: absolute;
+  bottom: -15px;
+  left: 48%;
+}
+.search_meals .block .meal .meal_info .ingred .meal_ing {
+  padding: 10px;
+  border: 1px solid #aaa;
+  height: 80px;
+  overflow: auto;
+  direction: rtl;
+}
+.search_meals .block .meal .meal_info .ingred .meal_ing .colored {
+  background: #1B435D;
+  color: #fff;
+}
+.search_meals .block .meal .meal_info .ingred .meal_ing span {
+  display: inline-block;
+  padding: 2px 4px;
+  border: 1px solid #1B435D;
+  border-radius: 5px;
+  cursor: default;
+  margin: 1px;
+}
+.search_meals .block .meal .meal_info a {
+  color: #fff;
+  background: #1B435D;
+  padding: 5px 20px;
+  font-size: 16px;
+  border: 1px solid #1B435D;
+  font-weight: bold;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.search_meals .block .meal .meal_info a span, .search_meals .block .meal .meal_info a i {
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.search_meals .block .meal .meal_info a:hover {
+  color: #1B435D;
+  background: #fff;
+  box-shadow: 2px 2px 5px #1B435D, -2px -2px 5px #1B435D;
+}
+.search_meals .block .meal .meal_info a:hover i {
+  margin-left: 10px;
+  padding: 2px 5px;
+  color: #f0f;
+}
+
+/*================
+	media query
+=================*/
+@media (max-width: 767px) {
+  .search_meals {
+    margin-top: 150px;
+  }
+  .search_meals h1 {
+    font-size: 20px;
+    width: 90%;
+    margin: 10px auto;
+  }
+  .search_meals .meal .image img {
+    max-width: 200px;
+  }
+}
+@media (max-width: 480px) {
+  .search_meals .block {
+    width: 100%;
+  }
+  .search_meals .block .meal .image img {
+    max-width: 250px;
+  }
+}
+
+/*# sourceMappingURL=search_meals.css.map */

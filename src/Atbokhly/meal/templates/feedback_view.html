@@ -1,0 +1,22 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Meal Feedback{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/feedback_style.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="feedback">
+        	<div class="container">
+
+        		<div class="row">
+                    {% for feed in feedback %}
+                    <a href="/meal/meal-feedback/details/{{feed.id}}"><pre class="col-xs-12"><span>{{feed.name}} | </span><span>{% if feed.content|length > 30 %}{{feed.content|slice:"30"}}....{% else %}{{feed.content}}{% endif %}</span></pre></a>
+                    {% endfor %}
+                </div>
+
+        	</div>
+        </section>
+
+        {% endblock content %}

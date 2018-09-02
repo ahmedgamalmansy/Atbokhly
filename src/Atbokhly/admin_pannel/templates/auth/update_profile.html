@@ -1,0 +1,43 @@
+{% extends 'base/base_chief.html' %}
+        {% block title %}Update Profile{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/update_profile.css' %}">
+        {% endblock css %}
+{% block content %}
+    <section class="update_sec">
+        <div class="container">
+
+            <form method="post" enctype="multipart/form-data" class="update_form" first_redirect="/validate-email" second_redirect="/{{request.user.pk}}/update-profile" action="">
+            {% csrf_token %}
+                <!--{{ form.as_p }}-->
+                <div class="col-sm-6">
+                    {% if form.first_name.errors %}
+                        <div class="col-xs-12 alert alert-danger">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            <strong>{{ form.first_name.errors|escape }}</strong>
+                        </div>
+                    {% endif %}
+                    <label>First Name:</label>
+                    {{form.first_name}}
+                </div>
+
+                <div class="col-sm-6">
+                    {% if form.last_name.errors %}
+                        <div class="col-xs-12 alert alert-danger">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            <strong>{{ form.last_name.errors|escape }}</strong>
+                        </div>
+                    {% endif %}
+                    <label>Last Name:</label>
+                    {{form.last_name}}
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" id="submit" name="submit">{% if state == True %}Update{% else %}Send new request{% endif %}</button>
+                    <a href="{% url 'user_profile:update-email' %}" class="mail_link">Change you Email</a>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

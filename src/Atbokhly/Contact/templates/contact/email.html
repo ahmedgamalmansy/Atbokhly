@@ -1,0 +1,57 @@
+{% extends 'base/base_chief.html' %}
+    {% block title %}Contact{% endblock title %}
+    {% block css %}
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+    {% endblock css %}
+{% block content %}
+
+<!-- start contact section -->
+
+        <section class="contact text-center">
+            <div class="container">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-12 title">
+                            <h3>CONTACT US</h3>
+                        </div>
+
+                        <div class="contacts">
+                            <div class="col-lg-4 col-md-6 location">
+                                <i class="fa fa-map-marker fa-2x"></i>
+                                <span>321 Awesome Street Cairo</span>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mail">
+                                <i class="fa fa-envelope-o fa-2x"></i>
+                                <span>atbokhly@info.com</span>
+                            </div>
+                            <div class="col-lg-4 col-md-12 phones">
+                                <i class="fa fa-phone fa-2x"></i>
+                                <span>01142075889</span>
+                            </div>
+                        </div>
+
+                        <form method="post" class="col-xs-12">
+                            {% csrf_token %}
+                            <div class="col-sm-6">
+                                {{ form.from_email }}
+                            </div>
+                            <div class="col-sm-6">
+                                {{ form.subject }}
+                            </div>
+                            <div class="col-xs-12">
+                                {{ form.message }}
+                            </div>
+                            <div class="col-sm-4 col-sm-offset-4 button text-center">
+                              <button type="submit" class="">Send</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- end contact section -->
+
+{% endblock %}

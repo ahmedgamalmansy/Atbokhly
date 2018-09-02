@@ -1,0 +1,32 @@
+{% extends 'base/base_chief.html' %}
+
+{% block title %}Respond-to-request{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/feedback_style.css' %}">
+{% endblock css %}
+
+{% block content %}
+<section class="request">
+    <div class="container">
+        <div class="row">
+            {% if request.user.is_superuser %}
+            <p><span>اسم الشيف </span>{{chef.user}}</p>
+            <p><span>البريد الابكترونى </span>{{chef.email}}</p>
+            <p><span>السيرة الذاتية </span><a href="{{chef.cv.url}}" target="_blank">CV Link</a></p>
+            <div class="respond_form">
+                <span>قبول/رفض</span>
+                <form method="get">
+                    {% csrf_token %}
+                    {{form.state}}
+                    <!--<i class="fa fa-angle-down fa-lg"></i>-->
+                    <button type="submit" id="submit">submit</button>
+                </form>
+
+
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,230 @@
+.chief{
+    margin-top: 50px;
+}
+.top_meals {
+    padding-top: 50px;
+    min-height: 600px;
+    .links {
+        margin-bottom: 30px;
+        background: #ddd;
+        border-radius: 5px;
+        ul {
+            direction: rtl;
+            li {
+                display: inline-block;
+                margin: 5px 1px;
+                border: 1px solid $mainColor;
+                border-radius: 5px;
+                @include transition(all, .3s, linear);
+                padding: 5px;
+                a {
+                    font-size: 20px;
+                    color: $thirdColor;
+                    text-decoration: none;
+                    font-weight: 600;
+                    padding: 5px 10px;
+                }
+                &:hover {
+                    cursor: pointer;
+                    background: $mainColor;
+                    a {
+                        @include transition(all, .3s, linear);
+                        color: $secondColor;
+                    }
+                }
+            }
+            li.active {
+                background: $mainColor;
+                a {
+                    color: $secondColor;
+                }
+            }
+        }
+    }
+
+    .wrapper{
+        position: relative;
+        overflow: hidden;
+        .btn-load-more {
+            position: absolute;
+            bottom: 0;
+            font-size: 14px;
+            color: #fff;
+            border: 0;
+            outline: 0;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            background: $mainColor;
+            @include transition(all, .3s, linear);
+            &:hover { background-color: #031725; }
+        }
+        .block {
+            height: 350px;
+            overflow: hidden;
+            padding: 0px;
+            display: inline-block;
+            border: 1px solid $mainColor;
+            box-shadow: 2px 2px 15px #1B435D,-2px -2px 15px #1B435D;
+            @include transition(all, .2s, linear);
+            .image{
+                height: 250px;
+                overflow: hidden;
+                position: relative;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                .overley {
+                    position: absolute;
+                    height: 125px;
+                    width: 100%;
+                    margin: 0px;
+                    padding-top: 30px;
+                    padding-bottom: 30px;
+                    box-sizing: border-box;
+                    top: 0;
+                    visibility: hidden;
+                    @include transition(all, .2s, linear);
+                }
+                .overley-top {
+                    background: $mainColor;
+                    opacity: .8;
+                    background-size: 100% 100%;
+                    top: -120px;
+                    -webkit-transition: all 0.2s linear;
+                    -moz-transition: all 0.2s linear;
+                    -o-transition: all 0.2s linear;
+                    transition: all 0.2s linear;
+                    a {
+                        padding: 10px;
+                        &:hover {
+                            i {
+                                @include transition(all, .2s, linear);
+                                color: $thirdColor;
+                            }
+                        }
+                    }
+                    a i {
+                        color: $secondColor;
+                    }
+                }
+                .overley-bottom {
+                    padding-top: 20px;
+                    background: $mainColor;
+                    opacity: .8;
+                    background-size: 100% 100%;
+                    top: 120px;
+                    margin-top: 125px;
+                    @include transition(all, .2s, linear);
+                    h5 {
+                        font-size: 18px;
+                        font-weight: bold;
+                        color: $secondColor;
+                    }
+                    p {
+                        color: #eee;
+                        letter-spacing: 1px;
+                        font-size: 13px;
+                        span{
+                            border: 1px solid #eee;
+                            border-radius: 5px;
+                            padding: 3px;
+                            display: inline-block;
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+                &:hover {
+                    //cursor: pointer;
+                    .overley {
+                        visibility: visible;
+                    }
+                    .overley-top, .overley-bottom {
+                        top: 0;
+                    }
+                }
+            }
+
+            .meal_desc{
+                height: 100px;
+                background: $secondColor;
+                margin: 0px;
+                padding: 10px;
+                .title{
+                    position: relative;
+                    height: 40px;
+                    h4{
+                        font-weight: bold;
+                        font-family: 'Lato',sans-serif;
+
+    //                    position: absolute;
+    //                    right: 30px;
+                    }
+                    .liked{
+                        color: $mainColor;
+                        border: 1px solid $mainColor;
+                        padding: 5px;
+                        font-size: 1.5em;
+                        position: absolute;
+                        top: 0;
+                        left: 30px;
+                        cursor: pointer;
+                    }
+                }
+                .rate{
+                    padding-top: 5px;
+                    i{
+                        color: rgb(252, 200, 0);
+                        font-size: 20px;
+                    }
+                    span{
+                        color: $mainColor;
+                        margin-left: 0px;
+                        font-size: 18px;
+                        line-height: 20px;
+                    }
+                }
+                .votes{
+                    p{
+                        color: $mainColor;
+                        font-size: 18px;
+                        line-height: 30px;
+                        font-weight: 700;
+                        span{
+                            color: $lastColor;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+    /*.load-more {
+        margin-bottom: 70px;
+        a {
+            margin-top: 15px;
+            color: $mainColor;
+            border: 2px solid $mainColor;
+            border-radius: 20px;
+            padding: 0px 20px;
+            line-height: 45px;
+            letter-spacing: 3px;
+            font-weight: 500;
+            @include transition(all, .2s, linear);
+            font-weight: 700;
+            &:hover {
+                background: $mainColor;
+                color: $secondColor;
+            }
+        }
+    }*/
+}
+
+@media (max-width: 480px){
+    .top_meals{
+        .wrapper .block {
+            width: 100%;
+        }
+    }
+}

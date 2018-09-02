@@ -1,0 +1,136 @@
+/**** E43A19 ****/
+.update_sec {
+  margin-top: 100px;
+  min-height: 600px;
+}
+.update_sec form {
+  background: rgba(1, 1, 1, 0.7);
+  padding: 30px 50px;
+  border-radius: 20px;
+}
+.update_sec form div input, .update_sec form div select, .update_sec form div option {
+  width: 100%;
+  background: transparent;
+  padding: 5px;
+  text-indent: 10px;
+  border: 1px solid #1B435D;
+  color: #aaa;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-family: 'Lato' Sans Serif;
+}
+.update_sec form div option {
+  color: #1B435D;
+}
+.update_sec form div select {
+  min-height: 30px;
+}
+.update_sec form div label {
+  color: #eee;
+}
+.update_sec form div h4 {
+  text-align: center;
+  color: #1B435D;
+  font-weight: bold;
+}
+.update_sec form div .alert {
+  padding: 2px 0px;
+}
+.update_sec form div .alert ul {
+  margin: 0px;
+}
+.update_sec form div:last-child br {
+  display: none;
+}
+.update_sec form .files {
+  background: #ddd;
+  padding: 10px;
+  border-radius: 10px;
+}
+.update_sec form .files a {
+  display: block;
+  margin-bottom: 10px;
+}
+.update_sec form .files input[type="checkbox"] {
+  float: left;
+  width: auto;
+}
+.update_sec form .files label {
+  color: #1B435D;
+  width: 90%;
+}
+.update_sec form .errorlist li {
+  color: red;
+}
+.update_sec form button {
+  margin: 20px 35%;
+  width: 30%;
+  background: #1B435D;
+  border: 1px solid #1B435D;
+  padding: 5px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 700;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.update_sec form button:hover {
+  color: #1B435D;
+  background: #fff;
+  letter-spacing: 1px;
+}
+.update_sec form .mail_link {
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.update_sec form .mail_link:hover {
+  -webkit-box-shadow: 1px 1px 10px #ddd;
+  -moz-box-shadow: 1px 1px 10px #ddd;
+  -o-box-shadow: 1px 1px 10px #ddd;
+  box-shadow: 1px 1px 10px #ddd;
+  background: rgba(1, 1, 1, 0.5);
+}
+
+@media (max-width: 767px) {
+  .update_sec {
+    margin-top: 150px;
+  }
+  .update_sec form {
+    margin: auto;
+    width: 80%;
+  }
+  .update_sec form p {
+    width: 49%;
+  }
+  .update_sec form button {
+    margin: 20px auto;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .update_sec {
+    margin-top: 150px;
+  }
+  .update_sec form {
+    margin: auto;
+    padding: 30px 20px;
+    width: 100%;
+  }
+  .update_sec form p {
+    width: 100%;
+  }
+  .update_sec form button {
+    margin: 20px auto;
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=update_profile.css.map */

@@ -1,0 +1,25 @@
+{% extends 'base/base_chief.html' %}
+{% block title %}View Chef Requests{% endblock title %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <section class="objs">
+        <div class="container">
+            {% if request.user.is_superuser %}
+            {% for obj in req %}
+            <div class="col-xs-12 meal_obj" id="{{obj.pk}}">
+                <div class="col-sm-6">
+                    <a href="{% url 'admin_pannel:respond-chef-request' obj.pk %}">respond</a>
+                </div>
+                <div class="col-sm-6">
+                    <span>{{obj}}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

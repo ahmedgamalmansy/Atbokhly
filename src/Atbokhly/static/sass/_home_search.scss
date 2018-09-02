@@ -1,0 +1,43 @@
+.search{
+    margin-top: 100px;
+    form {
+        .input{
+            padding-right: 0px;
+            .paraia-multi-select {
+                .form-control {
+
+                    height: auto;
+                    .items .item{
+                        display: flex;
+                        border-bottom: 1px solid #ddd;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+        .submit{
+            text-align: left;
+            padding-right: 0px;
+            input{
+                font-size: 16px;
+                font-weight: bold;
+                background: $mainColor;
+                border: none;
+                letter-spacing: 1px;
+                @include transition(all,.3s,linear);
+                &:hover{
+                    background: #0d293b;
+                }
+            }
+        }
+    }
+}
+
+/*==============
+    media query
+===============*/
+@media (max-width: 767px){
+    .search{
+        margin-top: 130px;
+    }
+}

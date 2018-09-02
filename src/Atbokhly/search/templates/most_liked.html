@@ -1,0 +1,42 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Liked Meals{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/search_meals.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="search_meals">
+            <div class="container">
+                <div class="row">
+                    {% for transaction in transactions %}
+                    <div class="col-md-4 col-xs-6 block">
+                        <div class="text-center meal">
+                            <div class="image">
+                                <img src="{{transaction.img.url}}" alt="meal image">
+                            </div>
+                            <div class="meal_info">
+                                <h2><span>اسم الوجبه <i class="fa fa-arrow-left"></i> {{transaction.meal_name}}</span></h2>
+                                <h3><span>القسم: </span>{{transaction.meal_category.category_name}}</h3>
+                                <div class="ingred">
+                                    <h3>المكونات </h3>
+                                    <div class="meal_ing">
+                                        {%  for ing in transaction.ingredients.all  %}
+                                        {% if ing in ingredients_list %}
+                                        <span class="colored">{{ing}}</span>
+                                        {%  else  %}
+                                        <span>{{ing}}</span>
+                                        {% endif  %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <a href="/meal/{{transaction.id}}"><i class="fa fa-arrow-right"></i><span> ذهاب إلى الوجبة</span> </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endblock content %}

@@ -1,0 +1,116 @@
+@import 'variables';
+@import 'methods';
+
+.contact{
+    min-height: 600px;
+    margin-top: 100px;
+    
+    .content{
+        position: relative;
+        margin: 40px auto;
+        //background: url(../images/contact.jpg) no-repeat;
+        background-size: 100% auto;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 50px;
+        box-sizing: border-box;
+        .title{
+            margin-bottom: 50px;
+            h3{
+                font-size: 35px;
+                color: $mainColor;
+                font-weight: 700;
+                font-family: 'Lato',sans-serif;
+            }
+        }
+        
+        .contacts{
+            width: 100%;
+            padding-bottom: 50px;
+            margin-top: 100px;
+            .location,.mail,.phones{
+                margin-bottom: 10px;
+                i{
+                    color: $mainColor;
+                    padding-right: 10px;
+                }
+                span{
+                    font-size: 18px;
+                    color: #aaa;
+                }
+            }
+        }
+        
+        form{
+            margin-top: 50px;
+            direction: rtl;
+            div{
+                margin-bottom: 15px;
+            }
+            input,textarea{
+                width: 100%;
+                background: transparent;
+                border: 1px solid $mainColor;
+                color: #ddd;
+                padding: 5px;
+                text-indent: 10px;
+                font-size: 16px;
+            }
+
+            .button{
+                button{
+                    width: 100%;
+                    background: $mainColor;
+                    border: 1px solid $mainColor;
+                    color: $secondColor;
+                    padding: 5px 0px;
+                    font-size: 16px;
+                    letter-spacing: 1px;
+                    @include transition(all, .5s, linear);
+                    span{
+                        font-weight: 700;
+                    }
+                    &:hover{
+                        background: $secondColor;
+                        color: $mainColor;
+                    }
+                }
+            }
+        }
+        
+        &::before{
+            content: '';
+            position: absolute;
+            background: rgba(1,1,1,.9);
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+    }
+    
+    
+    
+    
+    
+}
+
+@media (max-width: 480px){
+    
+    .contact {
+        .content{
+            padding: 0px;
+        }
+        .contacts{
+
+            .location,.mail,.phones{
+                i{
+                    font-size: 20px;
+                }
+                span{
+                    font-size: 14px !important;
+                }
+            }
+        }
+    }
+}

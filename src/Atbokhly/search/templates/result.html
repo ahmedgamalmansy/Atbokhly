@@ -1,0 +1,107 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Search Result{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/search_meals.css' %}">
+            <link rel="stylesheet" href="{% static 'Multiple-Select/dist/css/paraia_multi_select.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="search text-center" id="search">
+            <div class="container">
+                <div class="row">
+                    <form method="GET" action="{% url 'search:search_by_ingredients'  %}">
+                        <div class="col-sm-6 col-xs-10 col-sm-offset-2 col-xs-offset-1 input">
+                            <input type="text" class="form-control" name="query" data-paraia-multi-select="true"  placeholder="بحث بالمكونات" required="required" id="my-element">
+                        </div>
+                        <div class="col-sm-2 col-xs-10 col-sm-offset-0 col-xs-offset-1 submit">
+                            <input class="col-xs-12 btn btn-primary" type="submit" value="بحث" id="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+<section class="search_meals text-center">
+    <div class="container">
+        <div class="row">
+            {% for trans in transaction %}
+            <h1>{{trans.search_context}}</h1>
+            {% for meal in trans.result.all %}
+            <div class="col-md-4 col-xs-6 block">
+                <div class="text-center meal">
+                    <div class="image">
+                        <img src="{{meal.img.url}}" alt="meal image">
+                    </div>
+                    <div class="meal_info">
+                        <h2><span>اسم الوجبه: </span><span>{{meal.meal_name}}</span></h2>
+                        <h3><span>القسم: </span><span>{{meal.meal_category.category_name}}</span></span></h3>
+                        <div class="ingred">
+                            <h3>المكونات </h3>
+                            <div class="meal_ing">
+                                {%  for ing in meal.ingredients.all  %}
+                                {% if ing in ingredients_list %}
+                                <span class="colored">{{ing}}</span>
+                                {%  else  %}
+                                <span>{{ing}}</span>
+                                {% endif  %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <a href="/meal/{{meal.id}}"><span> ذهاب إلى الوجبة</span> <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+            <h1>لايوجد نتيجة لهذا البحث </h1>
+
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+{% block javascript %}
+    {% load static %}
+        <script src="{% static 'js/ajax_home.js' %}"></script>
+        <!--<script src="{% static 'js/sellect.min.js' %}"></script>-->
+        <script src="{% static 'Multiple-Select/dist/js/paraia_multi_select.js' %}"></script>
+            <script>
+                var items = [];
+                var i = 0;
+                {% for ing in ingredients %}
+                    items[i] = {value: '{{ing}}', text: '{{ing}}'};
+                    i = i+1
+                {% endfor %}
+                var select = $('[data-paraia-multi-select="true"]').paraia_multi_select({
+
+                    // enable multi select
+                    multi_select: true,
+
+                    //items
+                    items: items,
+                    // selected items on init
+                    defaults: [],
+
+                    // filter text
+                    filter_text: 'Filter',
+
+                    // is Right To Left?
+                    rtl: false,
+
+                    // is case sensitive?
+                    case_sensitive: false
+
+                });
+                $('#submit').click(function(){
+                    var query = select.paraia_multi_select('get_items');
+                    console.log(query);
+                    $("#my-element").val(query);
+                    var x = $("#my-element").val();
+                    console.log(x);
+                });
+            </script>
+    {% endblock javascript %}

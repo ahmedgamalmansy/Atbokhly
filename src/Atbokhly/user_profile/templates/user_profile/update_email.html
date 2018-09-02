@@ -1,0 +1,36 @@
+{% extends 'base/base_chief.html' %}
+        {% block title %}Change Email{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/update_profile.css' %}">
+        {% endblock css %}
+{% block content %}
+    <section class="update_sec">
+        <div class="container">
+            {% if state == None and user.groups.all.0.name != 'normal_users' and not user.is_superuser %}
+                <h1>your request is pending</h1>
+            {% else %}
+                    {% if state == True or user.groups.all.0.name == 'normal_users' or  user.is_superuser %}
+            <form method="get">
+                {% csrf_token %}
+
+                <div class="col-sm-4 col-sm-offset-4 col-xs-offset-0 email_error">
+                    {% if errors %}
+                        <div class="col-xs-12 alert alert-danger">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            <strong>{{ errors }}</strong>
+                        </div>
+                    {% endif %}
+                    <label>New Email Address:</label>
+                    {{form.email}}
+                </div>
+
+                <button type="submit" id="submit">Update</button>
+            </form>
+                {% else %}
+                    <h1>your request has been rejected</h1>
+                {% endif %}
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

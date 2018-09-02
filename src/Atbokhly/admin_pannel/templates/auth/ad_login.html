@@ -1,0 +1,54 @@
+{% extends 'base/base_chief.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock css %}
+
+{% block content %}
+<!-- start login section -->
+<section class="login text-center">
+    <div class="container">
+        <div class="row">
+            <div class="title text-center">
+                <h2>Atbokhly adminstration</h2>
+            </div>
+            <div class="col-sm-8 col-sm-offset-2 form text-center">
+                <form class="col-sm-6 col-sm-offset-3" method="post">
+                    {% csrf_token %}
+                    <p>تسجيل الدخول</p>
+                     {% for message in messages %}
+                        <div class="alert alert-danger">
+                            <a class="close" href="#" data-dismiss="alert">×</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="input">
+                        {{ form.user_name }}
+                        <i class="fa fa-user fa-lg"></i>
+                    </div>
+
+                    <div class="input">
+                        {{ form.password }}
+                        <i class="fa fa-lock fa-lg"></i>
+                    </div>
+
+                    <input type="submit" value="تسجيل دخول" class="col-xs-12">
+                    <a href="{% url 'accounts:reset_password' %}" class="forgot_pass">نسيت كلمة المرور</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- end login section -->
+{% endblock %}
+
+
+
+
+
+

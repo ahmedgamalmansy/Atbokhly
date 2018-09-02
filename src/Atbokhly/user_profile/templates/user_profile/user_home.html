@@ -1,0 +1,210 @@
+{% extends 'base/base_chief.html' %}
+{% block title %}Home{% endblock title %}
+{% block css %}
+{% load static %}
+<!--<link rel="stylesheet" href="{% static 'css/sellect.min.css' %}">-->
+<link rel="stylesheet" href="{% static 'Multiple-Select/dist/css/paraia_multi_select.css' %}">
+{% endblock %}
+{% block content %}
+        <!-- start search section -->
+
+        <section class="search text-center" id="search">
+            <div class="container">
+                <div class="row">
+                    <form method="GET" action="{% url 'search:search_by_ingredients'  %}">
+                        <div class="col-sm-6 col-xs-10 col-sm-offset-2 col-xs-offset-1 input">
+                            <input type="text" class="form-control" name="query" data-paraia-multi-select="true"  placeholder="بحث بالمكونات" required="required" id="my-element">
+
+                        </div>
+                        <div class="col-sm-2 col-xs-10 col-sm-offset-0 col-xs-offset-1 submit">
+                            <input class="col-xs-12 btn btn-primary" type="submit" value="بحث" id="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- end search section -->
+        {% if request.user.is_authenticated %}
+        <!-- start section homeslider -->
+
+        <section id="slider" class="slider">
+            <div class="container text-center">
+                <div class="swiper-container">
+                    <h2>Recommended meals</h2>
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        {% for meal,count in transactions %}
+                        <div class="swiper-slide">
+                            <a href="/meal/{{meal.id}}">
+                                <div class="most_liked_meals">
+                                    <div class="image">
+                                        {% load static %}
+                                        <img src="{{ meal.img.url }}">
+                                    </div>
+                                    <div class="meal_data col-sm-3">
+                                        <h4>{{ meal.meal_name }}</h4>
+                                        <div class="meal_ing">
+                                            {% if meal.ingredients.all|length > 30 %}
+                                                {%  for ing in meal.ingredients.all|slice:"30" %}
+                                                    <li class="ing">{{ing}}</li>
+                                                {% endfor %}<span class="more">..........</span>
+                                            {% else %}
+                                                {%  for ing in meal.ingredients.all%}
+                                                    <li class="ing">{{ing}}</li>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <!-- navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination" style="position:relative;"></div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- end section slider -->
+        {% endif %}
+        <!-- start meals section -->
+
+        <section id="top_meals" class="top_meals">
+            <div class="container">
+                <!-- controller navbar for filteration -->
+                <div class="text-center links wow fadeInRight animated">
+                    <ul class="list-unstyled filters ">
+                        <li class="filtr-button filtr active"><a href="javascript:;" data-filter="all">الكل</a></li>
+                        {% for cat in categories %}
+                            <li class="filtr-button filtr"><a href="javascript:;" data-filter="{{cat.category_name}}">{{cat.category_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- meals with categories -->
+                <div class="wrapper filtr-container">
+                    <!--<div class="loadMore">-->
+                    {% for rate in top_records %}
+                        {% for meal in meals %}
+                        {% ifequal rate.meal.id meal.id %}
+                        <div class="col-md-3 col-sm-4 col-xs-6 block filtr-item item" data-category="{{meal.meal_category}}" data-sort="value">
+                            <div class="image">
+                                <div class="overley overley-top text-center">
+                                    <a href="{{ meal.img.url }}" data-caption="{{meal.meal_owner.first_name}} {{meal.meal_owner.last_name}} : {{meal.meal_name}}" data-fancybox="image">
+                                        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="/meal/{{meal.id}}" title="view meal"><i class="fa fa-link fa-2x" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="overley overley-bottom text-center">
+                                    <h5>{{meal.meal_name}}</h5>
+                                    <p>
+                                        {% for ing in meal.ingredients.all|slice:":10" %}
+                                        <span>{{ing}}</span>
+                                        {% endfor %}
+
+                                    </p>
+                                </div>
+                                <img src="{{ meal.img.url }}">
+                            </div>
+                            <div class="meal_desc text-center">
+                                <div class="title">
+                                    <h4><span>{{meal.meal_name}}</span></h4>
+                                    <!--<h4><span><a href="/meal/{{meal.id}}">{{meal.meal_name}}</a></span></h4>-->
+                                    {% for like in likes %}
+                                    {% ifequal like.meal.id meal.id %}
+                                    <label><i class="fa fa-thumbs-up liked" id="{{meal.id}}" value="1"></i></label>
+                                    {% endifequal %}
+                                    {% endfor %}
+                                </div>
+                                <div class="col-xs-6 rate">
+                                    <i class="fa fa-star fa-lg"></i>
+                                    <span>{{rate.rate_value}}/5</span>
+                                </div>
+                                <div class="col-xs-6 votes">
+                                    <p><span>{{rate.Votes}} </span>Votes</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endifequal %}
+                        {% endfor %}
+                    {% endfor %}
+                    <!--</div>-->
+                </div>
+            </div>
+        </section>
+
+        <!-- end meals section -->
+    {% endblock %}
+    {% block javascript %}
+    {% load static %}
+        <!--<script src="{% static 'js/sellect.min.js' %}"></script>-->
+        <script src="{% static 'Multiple-Select/dist/js/paraia_multi_select.js' %}"></script>
+        <script>
+            var items = [];
+            var i = 0;
+            {% for ing in ingredients %}
+                items[i] = {value: '{{ing}}', text: '{{ing}}'};
+                i = i+1
+            {% endfor %}
+            var select = $('[data-paraia-multi-select="true"]').paraia_multi_select({
+
+                // enable multi select
+                multi_select: true,
+
+                //items
+                items: items,
+                // selected items on init
+                defaults: [],
+
+                // filter text
+                filter_text: 'Filter',
+
+                // is Right To Left?
+                rtl: false,
+
+                // is case sensitive?
+                case_sensitive: false
+
+            });
+            $('#submit').click(function(){
+                var query = select.paraia_multi_select('get_items');
+                console.log(query);
+                $("#my-element").val(query);
+                var x = $("#my-element").val();
+                console.log(x);
+            });
+        </script>
+        <script src="{% static 'js/Filterizr-master/dist/jquery.filterizr.min.js' %}"></script>
+        <script>
+            var filterizd = $('.filtr-container').filterizr({
+                    animationDuration: 0.5,
+                    controlsSelector: '',
+                    delay: 0,
+                    delayMode: 'progressive',
+                    easing: 'ease-out',
+                    filter: 'all',
+                    filterOutCss: {
+                      'opacity': 0,
+                      'transform': 'scale(0.5)'
+                    },
+                    filterInCss: {
+                      'opacity': 1,
+                      'transform': 'scale(1)'
+                    },
+                    layout: 'sameSize',
+                    multifilterLogicalOperator: 'or',
+                    setupControls: true
+                    });
+        </script>
+    {% endblock javascript %}
+<!-- body -->

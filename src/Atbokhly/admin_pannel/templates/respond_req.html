@@ -1,0 +1,11 @@
+{% autoescape off %}
+Hi {{ user.user.username }},
+{% if state == True %}
+Your request to become a chef on our Atbokhly system has been approved
+you can perform all your functionality now:
+{% else %}
+Your request to become a chef on our Atbokhly system has been rejected
+you can update your profile and send another request
+{% endif %}
+http://{{ domain }}
+{% endautoescape %}

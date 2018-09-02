@@ -1,0 +1,44 @@
+{% extends 'base/base_chief.html' %}
+
+{% block title %}Policies{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock css %}
+
+{% block content %}
+<section class="about">
+    <div class="container">
+        <h1 class="text-center">OUR POLICIES</h1>
+        <hr>
+        <div class="system">
+            <p class="text-center">About Chiefs</p>
+            <ul>
+                <li>
+                    After activating your account it will be reviewed within 24 hours and then:
+                    <ul>
+                        <li>if you are accepted all the functionality will be available for you.</li>
+                        <li>if you are rejected you will not be able to perform any of your functionality.</li>
+                    </ul>
+                </li>
+                <li>If your account was not active for 3 months you will get banned</li>
+                <li>you will get banned if we got bad complaints from users</li>
+            </ul>
+        </div>
+
+        <div class="system">
+            <p class="text-center">About normal users</p>
+            <ul>
+                <li>Any obscene comment or feedback, your account will get ban.</li>
+                <li>You should remember you account info, so if stolen you can recover it using our recovery system.</li>
+                <li>For more security, please change your password every 3 months.</li>
+                <li>Please enter a real person information.</li>
+
+            </ul>
+        </div>
+
+        <!--<p class="policies_footer text-center">Atbokhly Team</p>-->
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends 'base/base_chief.html' %}
+        {% block title %}Edit {{cat}}{{ing}}{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/update_profile.css' %}">
+        {% endblock css %}
+{% block content %}
+    <section class="update_sec">
+        <div class="container">
+            {% if request.user.is_superuser %}
+                <form method="post">
+                    {% csrf_token %}
+
+                    {% if cat %}
+                        <div class="col-sm-4 col-sm-offset-4 col-xs-offset-0 email_error">
+                            {% if form.category_name.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.category_name.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <label>New Email Address:</label>
+                            {{form.category_name}}
+                        </div>
+                    {% elif ing %}
+                        <div class="col-sm-4 col-sm-offset-4 col-xs-offset-0 email_error">
+                            {% if errors %}
+                                <div class="col-xs-12 alert alert-danger">
+                                    <a class="close" href="#" data-dismiss="alert">×</a>
+                                    <strong>{{ errors }}</strong>
+                                </div>
+                            {% endif %}
+                            <label>New Email Address:</label>
+                            {{form}}
+                        </div>
+                    {% endif %}
+                    <button type="submit" id="submit">Update</button>
+                </form>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

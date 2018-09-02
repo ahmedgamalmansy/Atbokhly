@@ -1,0 +1,12 @@
+{% autoescape off %}
+Hi {{ username }},
+{% if state == 'true' %}
+Your account got is now active you perform all of you functionality now.
+{% else %}
+Sorry, your account got banned you can contact us to find out why or to get it back.
+{% endif %}
+Thanks
+Best regards Atbokhly Team,
+
+http://{{ domain }}
+{% endautoescape %}

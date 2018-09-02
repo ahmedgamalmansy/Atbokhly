@@ -1,0 +1,60 @@
+.addcat, .addmeal{
+    margin-top: 100px;
+    min-height: 600px;
+    direction: rtl;
+    form{
+        background: rgba(1,1,1,.9);
+        padding: 50px 20px;
+        width: 60%;
+        margin: auto;
+        border-radius: 10px;
+        input , textarea{
+            margin-top: 10px;
+            padding: 5px;
+            text-indent: 10px;
+            font-size: 16px;
+            color: $secondColor;
+            width: 100%;
+            border: 1px solid $mainColor;
+            background: none;
+        }
+        label{
+            width: 100%;
+            font-weight: normal;
+            font-size: 16px;
+            padding: 5px 50px;
+            background: $mainColor;
+            color: $secondColor;
+            margin: 10px auto;
+            margin-bottom: 0px;
+            border: 1px solid $mainColor;
+        }
+
+        input[type='submit']{
+            margin-top: 10px;
+            width: auto;
+            padding: 5px 50px;
+            background: $mainColor;
+            color: $secondColor;
+            font-weight: 600;
+            letter-spacing: 1px;
+            @include transition(all, .3s, linear);
+            &:hover{
+                color: $mainColor;
+                background: $secondColor;
+            }
+        }
+    }
+}
+
+/*===================*/
+    //media query
+/*===================*/
+@media (max-width: 767px){
+    .addcat, .addmeal{
+        margin-top: 120px;
+        form{
+            width: 100%;
+        }
+    }
+}

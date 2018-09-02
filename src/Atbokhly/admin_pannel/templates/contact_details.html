@@ -1,0 +1,22 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Contact Details{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/feedback_style.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="contact">
+        	<div class="container">
+                <div class="row">
+                    {% if request.user.is_superuser %}
+                    <p><span>الراسـل</span>{{contact.0.from_email}}</p>
+                    <p><span>الموضوع</span>{{contact.0.subject}}</p>
+                    <p><span>المضمون</span>{{contact.0.message}}</p>
+                    <p><span>بتاريــخ</span>{{contact.0.timestamp}}</p>
+                    {% endif %}
+                </div>
+        	</div>
+        </section>
+        {% endblock content %}

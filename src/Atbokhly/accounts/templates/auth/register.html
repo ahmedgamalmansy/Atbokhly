@@ -1,0 +1,119 @@
+{% extends 'base/base_chief.html' %}
+        {% block title %}Sign Up{% endblock title %}
+        {% block css %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        {% endblock %}
+        {% block content %}
+
+        <!-- start login section -->
+
+        <section class="register text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="title">
+                        <h1>Welcome to <span>Atbokhly</span> society</h1>
+                    </div>
+                    <div class="form text-center">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <p>تسجيل العضوية</p>
+
+                            {% if form.first_name.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.first_name.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-6 col-sm-push-6">
+                                {{ form.first_name }}
+                            </div>
+
+                            {% if form.last_name.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.last_name.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-6 col-sm-pull-6 name">
+                                {{ form.last_name }}
+                            </div>
+
+                            {% if form.user_name.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.user_name.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-12 username">
+                                {{ form.user_name }}
+                                <i class="fa fa-user fa-lg"></i>
+                            </div>
+
+                            {% if form.email.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.email.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-12 mail">
+                                {{ form.email }}
+                                <i class="fa fa-envelope"></i>
+                            </div>
+
+                            {% if form.password.errors %}
+                            <div class="col-xs-12 alert alert-danger text-right">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.password.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-12 pass">
+                                {{ form.password }}
+                                <i class="fa fa-lock fa-lg"></i>
+                            </div>
+
+                            {% if form.password2.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.password2.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-12 pass">
+                                {{ form.password2 }}
+                                <i class="fa fa-lock fa-lg"></i>
+                            </div>
+
+
+                            <div class="col-sm-6 custom-control custom-checkbox">
+                                {{ form.user_type.0}}
+                            </div>
+                            <div class="col-sm-6 custom-control custom-checkbox">
+                                <!--<label class="custom-control-label" for="id_user_type_0">تسجيل كـ مستخدم ؟</label>-->
+                                {{ form.user_type.1 }}
+                            </div>
+
+                            {% if form.cv.errors %}
+                            <div class="col-xs-12 alert alert-danger">
+                                <strong>{{ form.cv.errors|escape }}</strong>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-12 cv">
+                                {{ form.cv }}
+                                <i class="fa fa-lock fa-lg"></i>
+                            </div>
+
+                            <input type="submit" value="تسجيل مستخدم جديد" class="col-xs-12">
+
+                            <a href="/auth/login">تسجيل دخول</a>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- end login section -->
+
+
+
+    {% endblock %}

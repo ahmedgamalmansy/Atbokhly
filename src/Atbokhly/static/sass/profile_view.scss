@@ -1,0 +1,114 @@
+@import 'variables';
+
+@import 'methods';
+
+@import 'global';
+.profile{
+    margin-top: 100px;
+    direction: rtl;
+    min-height: 600px;
+    h1{
+            color: $secondColor;
+            font-weight: 700;
+            text-align: center;
+            background: rgba(1,1,1,.7);
+            padding: 10px 30px;
+            border-radius: 10px;
+        }
+    .info{
+        background: rgba(1,1,1,.7);
+        padding: 30px;
+        border-radius: 10px;
+        .img{
+            img{
+                width: 100%;
+                max-height: 200px;
+                margin-left: 20px;
+                border-radius: 50%;
+
+            }
+            i{
+                border-radius: 50%;
+                color: $secondColor;
+                background: #aaa;
+                font-size: 200px;
+            }
+        }
+        .data{
+            padding-top: 10px;
+            p{
+                color: $thirdColor;
+                font-weight: 400;
+                font-size: 18px;
+                background: $secondColor;
+                overflow: hidden;
+                border-radius: 5px;
+                .title{
+                    color: $secondColor;
+                    margin-left: 10px;
+                    font-weight: bold;
+                    font-size: 20px;
+                    padding: 5px 15px 5px 0px;
+                    width: 150px;
+                    display: inline-block;
+                    background: $mainColor;
+                }
+            }
+        }
+        .cv{
+            p{
+                text-align: center;
+                padding: 15px 0px;
+                background: $secondColor;
+                border-radius: 5px;
+                a{
+                    font-size: 20px;
+                    color: $mainColor;
+                    font-weight: 700;
+                    padding: 5px 10px;
+                    margin: 5px;
+                    border-radius: 5px;
+                    border: 1px solid $mainColor;
+                    @include transition(all,.3s ,linear);
+                    &:hover{
+                        color: $secondColor;
+                        background: $mainColor;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:767px){
+    .profile{
+        margin-top: 120px;
+    }
+}
+@media (max-width:480px){
+    .profile{
+        margin-top: 120px;
+        .info{
+            padding: 30px 0px;
+            .data p .title{
+                font-weight: bold;
+                font-size: 20px;
+                padding: 5px 15px 5px 0px;
+                width: 100%;
+                display: block;
+            }
+            p {
+                text-align: center;
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+                span{
+                    width: 100%;
+                    display: block;
+                    margin-top: -5px;
+                    padding: 10px 0px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

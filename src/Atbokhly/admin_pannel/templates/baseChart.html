@@ -1,0 +1,45 @@
+{% extends 'base/base_chief.html' %}
+{% block title %}Add Meal{% endblock title %}
+{% block css %}
+<style>
+    .chart .container{
+        margin-top: 100px;
+        background: #fff;
+    }
+    .chart .container div div {
+        margin: 0px 0px;
+        padding: 20px;
+    }
+    .view_chefs{
+        padding: 20px;
+    }
+    .view_chefs a{
+        background: #1B435D;
+        color: #fff;
+        border: 1px solid #1B435D;
+        padding: 5px 10px;
+        transition: all .3s linear;
+    }
+    .view_chefs a:hover{
+        color: #1B435D;
+        background: transparent;
+        box-shadow: 1px 1px 10px #1B435D;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+        {% block chart %}
+        {% endblock chart %}
+        </div>
+    </section>
+    {% block javascript %}
+        {% include 'baseChart/js.html' %}
+        <script>
+            $(document).ready(function(){
+              {% block jquery %}{% endblock %}
+            })
+        </script>
+    {% endblock javascript %}
+{% endblock %}

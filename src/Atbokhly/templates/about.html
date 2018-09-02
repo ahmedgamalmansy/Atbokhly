@@ -1,0 +1,120 @@
+{% extends 'base/base_chief.html' %}
+
+{% block title %}About{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock css %}
+
+{% block content %}
+<section class="about">
+    <div class="container">
+        <h1 class="text-center">ABOUT US</h1>
+        <hr>
+
+        <div class="system text-center">
+            <p class="text-center">About our system</p>
+
+            <div class="span">
+                <h3>If normal user</h3>
+                Our site is a system that helps users to find out new meals and learn how to cook it.
+                It provides the users with more than search method to find his desired meal using the meal ingredients or its name.
+                Also the user can rate, like, comment on meals,view his liked meals,view the top searched meals over the entire site,or view his search history.
+                If there is any complains he you contact us through our contact page.
+                You can send a meal feedback to the chief.
+            </div>
+            <div class="span">
+                <h3>If you are a chief</h3>
+                you can add,delete,or update meals.
+                You can also do some functionality of the normal user like search,view meal,and view/edit your account settings.
+                You can see the feedback on every meal and its details.
+            </div>
+        </div>
+        <!--<p>Our system is an online cooking society, that allows its users to:</p>-->
+        <!--<ul>-->
+            <!--<li>search about a specific meal,view ,rate,like,and comment on it</li>-->
+            <!--<li>-->
+                <!--if logged in as a normal user he can:-->
+                <!--<ul>-->
+                    <!--<li>view the most searched meals over the entire site</li>-->
+                    <!--<li>view his liked meals</li>-->
+                    <!--<li>view his search history</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--if logged in as a chief he can:-->
+                <!--<ul>-->
+                    <!--<li>add,delete,or update meal</li>-->
+                    <!--<li>view meal feedback</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--&lt;!&ndash;<p>that was our common features and there is more</p>&ndash;&gt;-->
+        <!--</ul>-->
+
+        <div class="col-xs-12 team">
+            <p class="text-center">Meat Our Team</p>
+            <div class="col-md-4 col-sm-6 col-xs-12 block text-center wow fadeInLeft">
+                <div class="image text-center">
+                    {% load static %}
+                    <img src="{% static 'images/team/ahmedmansy2.jpg' %}">
+                </div>
+                <div class="info">
+                    <h4>Ahmed Mansy</h4>
+                    <span>(frontend & backend) development</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 block text-center wow fadeInDown">
+                <div class="image">
+                    {% load static %}
+                    <img src="{% static 'images/team/mahmoud.jpg' %}">
+                </div>
+                <div class="info">
+                    <h4>Mahmoud Adel</h4>
+                    <span>design - development</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 block text-center wow fadeInRight">
+                <div class="image">
+                    {% load static %}
+                    <img src="{% static 'images/team/Ebrahim.jpg' %}">
+                </div>
+                <div class="info">
+                    <h4>Ebrahim Elkhodary</h4>
+                    <span>design - development</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 block text-center wow fadeInLeft">
+                <div class="image">
+                    {% load static %}
+                    <img src="{% static 'images/team/ester.jpg' %}">
+                </div>
+                <div class="info">
+                    <h4>Ester Makram</h4>
+                    <span>design - development</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 block text-center wow fadeInUp">
+                <div class="image">
+                    {% load static %}
+                    <img src="{% static 'images/team/mariem.jpg' %}">
+                </div>
+                <div class="info">
+                    <h4>Mariem Raafat</h4>
+                    <span>design - development</span>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 block text-center wow fadeInRight">
+                <div class="image">
+                    {% load static %}
+                    <img src="{% static 'images/team/marina.jpg' %}">
+                </div>
+                <div class="info">
+                    <h4>Marina</h4>
+                    <span>design - development</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

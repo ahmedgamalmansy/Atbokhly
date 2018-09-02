@@ -1,0 +1,106 @@
+{% extends 'base/base_chief.html' %}
+{% block title %}Home{% endblock title %}
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/chief_home.css' %}">
+{% endblock css %}
+{% block content %}
+
+        <!-- end profile nav section -->
+
+        <!-- start meals section -->
+
+
+        <!--<h1>your request has been accepted</h1>-->
+
+        <section id="top_meals" class="top_meals chief">
+            <div class="container">
+
+                {% ifequal state None %}
+                    <h1>your request is pending</h1>
+                {% else %}
+                    {% ifequal state True %}
+                    <!-- controller navbar for filteration -->
+                    <div class="text-center links wow fadeInRight animated">
+                        <ul class="list-unstyled filters ">
+                            <li class="filtr-button filtr active"><a href="javascript:;" data-filter="all">الكل</a></li>
+                            {% for cat in categories %}
+                                <li class="filtr-button filtr"><a href="javascript:;" data-filter="{{cat.category_name}}">{{cat.category_name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- meals with categories -->
+
+                    <div class="wrapper filtr-container">
+                        <!--<div class="loadMore">-->
+                        {% for meal in meals %}
+                            {% for rate in rates %}
+                            {% ifequal rate.meal.id meal.id %}
+                            <div class="col-md-3 col-sm-4 col-xs-6 block filtr-item item" data-category="{{meal.meal_category}}" data-sort="value">
+                                <div class="image">
+                                    <div class="overley overley-top text-center">
+                                        <a href="{{ meal.img.url }}"  data-caption="{{meal.meal_recipe}}" data-fancybox="image">
+                                            <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="/meal/{{meal.id}}" title="view meal"><i class="fa fa-link fa-2x" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="overley overley-bottom text-center">
+                                        <h5>{{meal.meal_name}}</h5>
+                                        <p>
+                                            {% for ing in meal.ingredients.all|slice:":10" %}
+                                            <span>{{ing}}</span>
+                                            {% endfor %}
+                                        </p>
+                                    </div>
+                                    <img src="{{ meal.img.url }}">
+                                </div>
+                                <div class="meal_desc text-center">
+                                    <h4>{{meal.meal_name}}</h4>
+                                    <div class="col-xs-6 rate">
+                                        <i class="fa fa-star fa-lg"></i>
+                                        <span>{{rate.rate_value}}/5</span>
+                                    </div>
+                                    <div class="col-xs-6 votes">
+                                        <p><span>{{rate.Votes}} </span>Votes</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endifequal %}
+                            {% endfor %}
+                        {% endfor %}
+                        <!--</div>-->
+                    </div>
+                    {% else %}
+                        <h1>your request has been rejected</h1>
+                    {% endifequal %}
+                {% endifequal %}
+            </div>
+        </section>
+        <!-- end meals section -->
+
+    {% endblock %}
+    {% block javascript %}
+        <script src="{% static 'js/Filterizr-master/dist/jquery.filterizr.min.js' %}"></script>
+        <script>
+            var filterizd = $('.filtr-container').filterizr({
+                    animationDuration: 0.5,
+                    controlsSelector: '',
+                    delay: 0,
+                    delayMode: 'progressive',
+                    easing: 'ease-out',
+                    filter: 'all',
+                    filterOutCss: {
+                      'opacity': 0,
+                      'transform': 'scale(0.5)'
+                    },
+                    filterInCss: {
+                      'opacity': 1,
+                      'transform': 'scale(1)'
+                    },
+                    layout: 'sameSize',
+                    multifilterLogicalOperator: 'or',
+                    setupControls: true
+                    });
+        </script>
+    {% endblock %}

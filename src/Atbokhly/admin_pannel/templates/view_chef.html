@@ -1,0 +1,73 @@
+{% extends 'base/base_chief.html' %}
+
+{% block title %}View {{user_obj}}{% endblock title %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+{% endblock css %}
+
+{% block content %}
+<section class="users">
+    <div class="container">
+        {% if request.user.is_superuser %}
+        <div class="col-xs-12 text-center">
+            <form class="col-sm-6 col-sm-offset-3 searchForm text-center">
+                <input type="text" placeholder="filter {{user_obj}}">
+            </form>
+        </div>
+        {% for obj in chefs %}
+        <div class="col-xs-12 meal_obj {{obj.user.first_name}}_{{obj.user.last_name}} {{obj.user.username}}">
+            <div class="conform_delete_popup text-center" id="confirm_delete_{{obj.user.id}}">
+                <div class="col-lg-4 col-sm-6 col-xs-10 col-lg-offset-4 col-sm-offset-3 col-xs-offset-1 delete_confirm">
+                    <p>Are you sure?</p>
+                    <a href="#" class="close_popup">No</a>
+                    {% if user_obj == 'users' %}
+                    <a href="{% url 'admin_pannel:edit-user-state' obj.user.id %}">Yes</a>
+                    {% else %}
+                    <a href="{% url 'admin_pannel:edit-state' obj.user.id %}">Yes</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-xs-6">
+
+                <a href="#" class="delete" id="{{obj.user.id}}">
+                    {% if obj.state == False or not obj.user.is_active %}un{% endif %}
+                    ban chef
+                </a>
+            </div>
+
+            <div class="col-xs-6">
+                <span>{{obj.user.username}} <i class="fa fa-arrow-right"></i> </span>
+                <span>{{obj}}</span>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h1>Page not found</h1>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/delete_confirm.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('.searchForm input').on('input', function(){
+            var input_val = $(this).val();
+            console.log(input_val);
+            $(".meal_obj").css('display','none');
+            $(".meal_obj").each(function(){
+                if($(this).attr("class").includes(input_val)){
+                    $(this).css('display','block');
+                    //$(this).fadeIn(500);
+                    console.log($(this).attr("class"));
+                }
+            });
+
+        });
+    });
+</script>
+{% endblock %}

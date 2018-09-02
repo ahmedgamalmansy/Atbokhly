@@ -1,0 +1,177 @@
+@import 'variables';
+@import 'methods';
+
+.search_meals{
+	margin-top: 50px;
+    padding-bottom: 150px;
+    min-height: 600px;
+    overflow: hidden;
+    .filter_selection{
+        position: relative;
+        padding: 30px 0px;
+        margin-bottom: 20px;
+        label{
+            float: right;
+        }
+        select{
+            float: right;
+            right: 0px;
+            margin-bottom: 20px;
+            padding: 5px 20px;
+            border-radius: 5px;
+        }
+    }
+
+    h1{
+        background: rgba(1,1,1,.7);
+        border-radius: 10px;
+        padding: 10px;
+        color: $secondColor;
+        direction: rtl;
+        word-wrap: break-word;
+        font-size: 25px;
+    }
+    .block{
+        height: 550px;
+        .meal{
+            border: 1px solid $mainColor;
+            box-shadow: 2px 2px 5px $mainColor;
+            width: 100%;
+            background: #eee;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            .image{
+
+                border-bottom: 1px solid #ddd;
+                margin: 0px;
+                padding: 30px 0px;
+                img{
+                    //width:100%;
+                    height: 150px;
+                    width: 85%;
+                    border-radius: 10px;
+                    box-shadow: 2px 2px 5px #777, -2px -2px 5px #ddd;
+                    @include transition(all, .3s, linear);
+                    &:hover{
+                        transform: scale(1.1,1.1);
+                    }
+                }
+            }
+            .meal_info{
+                padding: 0px 20px 20px;
+                h2{
+                    direction: rtl;
+                    background: rgba(27, 67, 93,.9);//rgba(1,1,1,.7);
+                    border-radius: 5px;
+                    padding: 10px;
+                    font-size: 23px;
+                    font-weight: bold;
+                    color: $secondColor;
+                    i{
+                        font-size: .8em;
+                    }
+                }
+                h3{
+                    padding: 0px;
+                    margin: 0px;
+                    font-size: 23px;
+                    span{
+                    font-weight: 700;
+                    }
+                }
+                .ingred{
+                    margin: 10px 0px 20px;
+                    //border: 1px solid #aaa;
+                    h3{
+                        background: $mainColor;
+                        color: $secondColor;
+                        padding: 10px 0px;
+                        position: relative;
+                        cursor: default;
+                        &::after{
+                            content: '\f0d8';
+                            font-family: FontAwesome;
+                            font-size: 1.5em;
+                            color: #eee;
+                            position: absolute;
+                            bottom: -15px;
+                            left: 48%;
+                        }
+                    }
+                    .meal_ing{
+                        padding: 10px;
+                        border: 1px solid #aaa;
+                        height: 80px;
+                        overflow: auto;
+                        direction: rtl;
+                        .colored{
+                            background: $mainColor;
+                            color: $secondColor;
+                        }
+                        span{
+                            //float: right;
+                            display: inline-block;
+                            padding: 2px 4px;
+                            border: 1px solid $mainColor;
+                            border-radius: 5px;
+                            cursor: default;
+                            margin: 1px;
+                        }
+                    }
+                }
+                a{
+                    color: $secondColor;
+                    background: $mainColor;
+                    padding: 5px 20px;
+                    font-size: 16px;
+                    border: 1px solid $mainColor;
+                    font-weight: bold;
+                    @include transition(all, .3s, linear);
+                    span,i{
+                        @include transition(all, .3s, linear);
+                    }
+                    &:hover{
+                        color: $mainColor;
+                        background: $secondColor;
+                        box-shadow: 2px 2px 5px $mainColor, -2px -2px 5px $mainColor;
+                        span{
+
+                        }
+                        i{
+                            margin-left: 10px;
+                            padding: 2px 5px;
+                            color: $lastColor;
+                        }
+                    }
+                }
+            }
+        }
+	}
+}
+
+
+/*================
+	media query
+=================*/
+@media (max-width: 767px){
+	.search_meals {
+	    margin-top: 150px;
+        h1{
+            font-size: 20px;
+            width: 90%;
+            margin: 10px auto;
+        }
+        .meal .image img{
+            max-width: 200px;
+        }
+	}
+}
+
+@media (max-width: 480px){
+	.search_meals .block{
+		width: 100%;
+		.meal .image img{
+			max-width: 250px;
+		}
+	}
+}

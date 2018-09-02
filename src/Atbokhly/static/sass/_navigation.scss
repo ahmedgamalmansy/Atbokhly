@@ -1,0 +1,175 @@
+
+.photo{
+    width: 100%;
+//    background: $secondColor;
+    border-bottom: 1px solid $secondColor;
+    padding-left: 20px;
+    .content{
+        direction: ltr;
+        padding: 10px 0px;
+        cursor: pointer;
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            line-height: 40px;
+        }
+        i{
+        border-radius: 50%;
+        color: $secondColor;
+        background: #aaa;
+        font-size: 50px;
+        }
+        span{
+            font-weight: 700;
+            font-family: Microsoft Sans Serif;
+            font-size: 20px;
+            line-height: 40px;
+            padding-top: 10px;
+            color: $secondColor;
+            letter-spacing: 1px;
+            margin-left: 5px;
+            
+        }
+        .account{
+            display: none;
+            position: absolute;
+            right: 5px;
+            width: 240px;
+            margin-top: 10px;
+            padding-top: 15px;
+            background: $secondColor;
+            //border-bottom-left-radius: 5px;
+            //border-bottom-right-radius: 5px;
+            z-index: 9999;
+            ul{
+                padding: 0px;
+                margin: 0px;
+                li{
+                    width: 90%;
+                    margin-left: 5%;
+                    padding: 10px;
+                    text-align: center;
+                    @include transition(all, .3s, linear);
+                    a{
+                        color: $mainColor;
+                        font-size: 16px;
+                        font-weight: 600;
+                        padding: 5px;
+                        @include transition(all, .3s, linear);
+                    }
+                    &:hover{
+                        border-bottom: 1px solid $mainColor;
+                        a{
+                            color: $lastColor;
+                        }
+                    }
+                }
+            }
+            &:before{
+                content: '';
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                top: -7px;
+                right: 50%;
+                background: white;
+                transform: rotate(45deg);
+            }
+        }
+        &:hover{
+            .account{
+                display: block;
+            }
+        }
+    }
+
+
+}
+.profile_links{
+    padding: 10px 0px;
+    width: 100%;
+    direction: rtl;
+    ul {
+        padding: 0px;
+        li{
+            text-align: right;
+            a{
+                font-size: 20px;
+                color: $secondColor;
+                font-weight: 600;
+                padding: 10px 20px;
+                line-height: 50px;
+                @include transition(all, .3s, linear);
+                &:hover{
+                    color: #ddd;
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width: 767px){
+    .profile_nav{
+        margin-top: 120px;
+        .profile_links ul li a{
+            font-size: 15px;
+        }
+        .profile_links ul li a{
+            padding: 10px;
+        }
+        .photo .content{
+            span{
+                font-size: 15px;
+            }
+            .account{
+                //left: 20%;
+                ul li a{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px){
+    
+    .profile_nav .container{
+        width: 100%;
+        padding: 0px;
+        .profile_links,.photo{
+            width: 100%;
+        }
+        .photo .content{
+            float: none;
+            //padding: 0px;
+            .account{
+                //left: 30%;
+                min-width: 200px;
+            }
+            img{
+                margin-left: -20px;
+            }
+        }
+        .profile_links{
+            background: #aaa;
+            padding: 0px;
+            ul {
+                padding: 0px;
+                margin: 0px;
+                li{
+                    float: none;
+                    display: inline-block;
+                    a{
+                        color: $thirdColor;
+
+                    }
+                }
+            }
+        }
+        
+            
+        margin-top: 100px;
+    }
+}

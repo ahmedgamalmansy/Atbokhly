@@ -1,0 +1,187 @@
+/**** E43A19 ****/
+.feedback, .contact, .request {
+  min-height: 600px;
+  direction: rtl;
+  margin-top: 100px;
+}
+.feedback p, .feedback .respond_form, .contact p, .contact .respond_form, .request p, .request .respond_form {
+  color: #1B435D;
+  font-size: 20px;
+  border-bottom: 1px solid #1B435D;
+  background: #ddd;
+  overflow: hidden;
+}
+.feedback p span, .feedback .respond_form span, .contact p span, .contact .respond_form span, .request p span, .request .respond_form span {
+  border: 1px solid #1B435D;
+  padding: 15px 20px;
+  margin-left: 10px;
+  display: inline-block;
+  width: 160px;
+  background: #1B435D;
+  color: #fff;
+}
+.feedback p form, .feedback .respond_form form, .contact p form, .contact .respond_form form, .request p form, .request .respond_form form {
+  display: inline-block;
+  position: relative;
+}
+.feedback p form select, .feedback .respond_form form select, .contact p form select, .contact .respond_form form select, .request p form select, .request .respond_form form select {
+  /*border: 1px solid $mainColor;
+  color: $mainColor;
+  background: transparent;
+  padding: 5px;
+  border-radius: 5px;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  appearance:none;*/
+  /* styling */
+  background: transparent;
+  color: #1B435D;
+  border: 1px solid #1B435D;
+  border-radius: 5px;
+  display: inline-block;
+  font: inherit;
+  line-height: 1.5em;
+  padding: 10px 70px 10px 10px;
+  /* reset */
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent url("../images/drop_sown.png") no-repeat right center;
+  background-size: 50px 50px;
+}
+.feedback p form button, .feedback .respond_form form button, .contact p form button, .contact .respond_form form button, .request p form button, .request .respond_form form button {
+  border: 1px solid #1B435D;
+  color: #fff;
+  background: #1B435D;
+  padding: 10px;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.feedback p form button:hover, .feedback .respond_form form button:hover, .contact p form button:hover, .contact .respond_form form button:hover, .request p form button:hover, .request .respond_form form button:hover {
+  color: #1B435D;
+  background: transparent;
+  box-shadow: 1px 1px 10px #1B435D;
+}
+.feedback p form i, .feedback .respond_form form i, .contact p form i, .contact .respond_form form i, .request p form i, .request .respond_form form i {
+  margin: 0px 40px;
+  background: #1B435D;
+  color: #fff;
+  padding: 5px;
+  border-radius: 50%;
+}
+.feedback pre, .contact pre, .request pre {
+  font-family: Arial;
+  font-size: 20px;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+.feedback pre p, .contact pre p, .request pre p {
+  color: #1B435D;
+  font-size: 20px;
+  border-bottom: 1px solid #1B435D;
+  padding: 10px;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+.feedback pre p span, .contact pre p span, .request pre p span {
+  color: #f0f;
+  margin-left: 10px;
+}
+.feedback pre .color, .contact pre .color, .request pre .color {
+  color: #000;
+  margin-left: 10px;
+  font-weight: bold;
+}
+.feedback pre span, .contact pre span, .request pre span {
+  float: right;
+  color: #1B435D;
+  margin-left: 10px;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+.feedback pre:hover, .contact pre:hover, .request pre:hover {
+  background: #1B435D;
+}
+.feedback pre:hover span, .feedback pre:hover a, .feedback pre:hover p, .contact pre:hover span, .contact pre:hover a, .contact pre:hover p, .request pre:hover span, .request pre:hover a, .request pre:hover p {
+  color: #fff;
+  border-color: #fff;
+}
+
+.addmeal form label, .addcat form label {
+  padding: 5px 10px;
+}
+.addmeal form input[type="submit"], .addcat form input[type="submit"] {
+  width: 30%;
+  margin: 20px 35% 0px;
+  padding: 5px;
+}
+.addmeal select, .addcat select {
+  width: 100%;
+  padding: 10px;
+}
+.addmeal select option, .addcat select option {
+  border-bottom: 1px solid #1B435D;
+  padding: 5px;
+  font-size: 16px;
+}
+
+/*====================*/
+/*====================*/
+@media (max-width: 767px) {
+  .feedback, .contact, .request {
+    margin-top: 120px;
+    padding: 0px;
+  }
+  .feedback .container, .contact .container, .request .container {
+    width: 90%;
+  }
+
+  form input[type="submit"] {
+    width: 100% !important;
+    margin: 20px 0px 0px !important;
+  }
+}
+@media (max-width: 480px) {
+  .feedback p,
+  .feedback .respond_form,
+  .contact p,
+  .contact .respond_form,
+  .request p,
+  .request .respond_form {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  .feedback p span,
+  .feedback .respond_form span,
+  .contact p span,
+  .contact .respond_form span,
+  .request p span,
+  .request .respond_form span {
+    padding: 10px 0px;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .feedback p form,
+  .feedback .respond_form form,
+  .contact p form,
+  .contact .respond_form form,
+  .request p form,
+  .request .respond_form form {
+    padding: 10px 0px;
+  }
+}
+
+/*# sourceMappingURL=feedback_style.css.map */

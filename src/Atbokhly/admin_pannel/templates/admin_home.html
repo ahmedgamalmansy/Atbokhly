@@ -1,0 +1,64 @@
+{% extends 'base/base_chief.html' %}
+
+{% if request.user.is_superuser %}
+{% block title %}Admin - Home{% endblock title %}
+{% endif %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<section class="home">
+    
+    <div class="container">
+        {% if request.user.is_superuser %}
+        <div class="title">
+            <h1>Site Statistics</h1>
+        </div>
+        <div class="col-sm-4 block text-center">
+            <div class="data">
+                <h3>Number of meals</h3>
+                <p>{{meal_count}} Meal</p>
+                <div class="">
+                    <a href="{% url 'admin_pannel:view-meals'%}" class="chart_link">view all meals</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 block text-center">
+            <div class="data">
+                <h3>Number of Users</h3>
+                <p>{{user_count}} User</p>
+                <div class="">
+                    <a href="{% url 'admin_pannel:chart_view' %}" class="chart_link">view users chart</a>
+                    <a href="{% url 'admin_pannel:view-users' %}" class="chart_link">view all users</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 block text-center">
+            <div class="data">
+                <h3>Number of Chefs</h3>
+                <p>{{chef_count}} Chef</p>
+                <div class="">
+                    <a href="{% url 'admin_pannel:chart_view' %}" class="chart_link">view chefs chart</a>
+                    <a href="{% url 'admin_pannel:view-chefs' %}" class="chart_link">View all Chefs</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 block text-center">
+            <div class="data">
+                <h3>Number of visitors</h3>
+                <div class="">
+                    <p><b>this month </b><i class="fa fa-arrow-right"></i> {{visits.0}} Visitor</p>
+                    <p><b>all visits </b><i class="fa fa-arrow-right"></i> {{visits.1}} Visitor</p>
+                    <a href="{% url 'admin_pannel:chart_view' %}" class="chart_link">view visits chart</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}

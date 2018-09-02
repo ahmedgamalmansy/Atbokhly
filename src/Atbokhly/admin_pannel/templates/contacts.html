@@ -1,0 +1,33 @@
+{% extends 'base/base_chief.html' %}
+{% block title %}Contacts{% endblock title %}
+{% block css %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+    <style>
+
+    </style>
+{% endblock css %}
+
+{% block content %}
+    <section class="contacts">
+        <div class="container">
+            {% if request.user.is_superuser %}
+            {% if not all %}
+            <a href="{% url 'admin_pannel:view-all-contacts' %}" class="add">View All Contacts</a>
+            {% endif %}
+            {% for obj in  contacts%}
+            <div class="col-xs-12 contact_obj">
+
+                <div class="col-xs-6">
+                    <a href="{% url 'admin_pannel:view-contact' obj.id %}">view</a>
+                </div>
+
+                <div class="col-xs-6">
+                    <span>{{obj}}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}Feedback{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/meal.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="feedback" id="feedback">
+        	<div class="container">
+        		<div class="row">
+
+        			<form class="text-center">
+        				<h3>FEEDBACK</h3>
+						{% csrf_token %}
+                        <!--{{form}}-->
+                        {% if form.name.errors %}
+                            <div class="alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.name.errors|escape }}</strong>
+                            </div>
+                        {% endif %}
+                        {{form.name}}
+
+                        {% if form.email.errors %}
+                            <div class="alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.email.errors|escape }}</strong>
+                            </div>
+                        {% endif %}
+                        {{form.email}}
+
+                        {% if form.content.errors %}
+                            <div class="alert alert-danger">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+                                <strong>{{ form.content.errors|escape }}</strong>
+                            </div>
+                        {% endif %}
+                        {{form.content}}
+		        		<input type="submit" name="" value="Send">
+		        	</form>
+        		</div>
+        	</div>
+        </section>
+        {% endblock content %}

@@ -1,0 +1,256 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %}{{meal.meal_owner}}-{{meal.meal_name}}{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/meal.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+		<!--	start the rate section -->
+		<section class="rate">
+			<div class="container">
+				{% ifequal user.groups.all.0.name 'normal_users' %}
+                <form class="likeFun" method="GET" first_redirect="/meal/{{meal.id}}/like" second_redirect="/meal/{{meal.id}}">
+					<label id="like">
+					{% if like %}
+						<input type="checkbox" value=false checked=checked class="like">
+						<i class="fa fa-thumbs-up ff liked" id="{{meal.id}}" value="1" title="dislike!"></i>
+					{% else %}
+						<i class="fa fa-long-arrow-right arrow"></i>
+						<input type="checkbox" value=true class="like">
+						<i class="fa fa-thumbs-up ff" id="{{meal.id}}" value="1" title="like!"></i>
+					{% endif %}
+					</label>
+				</form>
+
+                <!--{% if user_rate %}-->
+				<!--<p id="user_rate">-->
+					<!--<span>تقييمك للوجبه <i class="fa fa-arrow-left"></i> </span>-->
+					<!--<span>{{user_rate}}</span>-->
+				<!--</p>-->
+                <!--{% endif %}-->
+
+
+				<form class="rating" method="GET" first_redirect="/meal/{{meal.id}}/rate" second_redirect="/meal/{{meal.id}}">
+					<h4>قيم الوجبة </h4>
+					{% if rate_arr %}
+					{% for star in rate_stars %}
+						{% if star.0 <= user_rate %}
+							{% ifequal star.0 user_rate %}
+							<input type="radio" id="{{star.1}}" name="rating" value="{{star.0}}" class="in" checked/>
+							<label class = "{{star.2}}" for="{{star.1}}" title="Awesome - {{star.0}} stars"></label>
+							{% else %}
+							<input type="radio" id="{{star.1}}" name="rating" value="{{star.0}}" class="in"/>
+							<label class = "{{star.2}}" for="{{star.1}}" title="Awesome - {{star.0}} stars"></label>
+							{% endifequal %}
+						{% else %}
+						<input type="radio" id="{{star.1}}" name="rating" value="{{star.0}}" class="in"/>
+						<label class = "{{star.2}}" for="{{star.1}}" title="Awesome - {{star.0}} stars"></label>
+						{% endif %}
+					{% endfor %}
+					{% else %}
+                    <input type="radio" id="star5" name="rating" value="5" class="in" />
+                    <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+
+                    <input type="radio" id="star4half" name="rating" value="4.5" class="in"/>
+                    <label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+
+                    <input type="radio" id="star4" name="rating" value="4" class="in"/>
+                    <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+
+                    <input type="radio" id="star3half" name="rating" value="3.5" class="in"/>
+                    <label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+
+                    <input type="radio" id="star3" name="rating" value="3" class="in"/>
+                    <label class = "full" for="star3" title="Meh - 3 stars"></label>
+
+                    <input type="radio" id="star2half" name="rating" value="2.5" class="in"/>
+                    <label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+
+                    <input type="radio" id="star2" name="rating" value="2" class="in"/>
+                    <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                    <input type="radio" id="star1half" name="rating" value="1.5" class="in"/>
+                    <label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+
+                    <input type="radio" id="star1" name="rating" value="1" class="in"/>
+                    <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+
+                    <input type="radio" id="starhalf" name="rating" value=".5" class="in"/>
+                    <label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+					{%  endif%}
+                </form>
+				{% endifequal %}
+			</div>
+		</section>
+		<!--	start the meal info section -->
+        <section class="meal_info">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-sm-5 col-sm-push-7 image">
+        				<img src="{{ meal.img.url }}">
+						<p class="text-left"><b>Posted </b><i class="fa fa-arrow-right"></i> {{meal.created_at}}</p>
+						<p class="text-left"><b>Last Edit </b><i class="fa fa-arrow-right"></i> {{meal.updated_at}}</p>
+        			</div>
+        			<div class="col-sm-7 col-sm-pull-5 info">
+						{% if user.groups.all.0.name == 'normal_users' or meal.meal_owner != request.user%}
+						<p><span>الشيف</span><a href="/{{meal.meal_owner.id}}/view-chief-profile" title="{{meal.meal_owner}}">{{meal.meal_owner.first_name}} {{meal.meal_owner.last_name}}</a></p>
+						{% endif %}
+						<p><span>اسم الوجبة</span>{{meal.meal_name}}</p>
+						<p><span>القسم</span>{{meal.meal_category.category_name}}</p>
+						<p><span>المكونات</span>
+        					{%  for ing in meal.ingredients.all  %}
+							<span class="ingred">{{ing}}</span>
+			                {% endfor %}
+            			</p>
+						{% ifequal user.groups.all.0.name 'chiefs' %}
+						{% ifequal meal.meal_owner request.user %}
+						<div class="delete_meal">
+							<a href="#" id="delete">إزالة الوجبة</a>
+                            <!--<span></span>-->
+                            <a href="/meal/update-meal/{{meal.id}}">تعديل الوجبة</a>
+                            <!--<span></span>-->
+                            <a href="/meal/meal-feedback/{{meal.id}}">اراء الزوار</a>
+							<div class="delete">
+								<h2>تأكيد الحذف ؟!</h2>
+								<br>
+								<a href="/meal/delete-meal/{{meal.id}}">تأكيد</a>
+								<a href="#" id="close">إلغاء</a>
+							</div>
+						</div>
+						{% endifequal %}
+						{% else %}
+						{% if not request.user.is_superuser %}
+						<p><span>لإبداء رأيك</span> <a href="feedback">اضغط هنا</a></p>
+						{% endif %}
+						{% endifequal %}
+						<p id="meal_rate"><span>التقييم</span><i class="fa fa-star fa-lg"></i>{{meal_rate.rate_value}}</p>
+						<p><span>المعجبين</span><i class="fa fa-thumbs-up color_main"></i>{{likes_count}}</p>
+        			</div>
+        		</div>
+        		<div class="description text-center">
+        			<h3>طريقة التحضير</h3>
+        			<pre>{{meal.meal_recipe}}</pre>
+        		</div>
+
+				<div class="video text-center">
+					{% if meal.video %}
+					<video src="{{meal.video.url}}" controls poster="{{meal.img.url}}"></video>
+					{% else %}
+					<h3>Sorry, no video found for this meal</h3>
+					{% endif %}
+
+				</div>
+        	</div>
+        </section>
+
+		<!--	start the comment section -->
+        <section class="comments">
+        	<div class="container">
+        		<div class="latest_comment">
+					<h2>COMMENTS</h2>
+					<!--التعليـقات-->
+
+					{% for comment in comments %}
+					<div class="col-xs-12 block" id="container_{{comment.1.id}}">
+						<div class="image">
+							{% if comment.1.user.userprofile.img %}
+							<img src="{{ comment.1.user.userprofile.img.url }}" title="{{comment.1.user.first_name}} {{comment.1.user.last_name}}">
+							{% elif comment.1.user.chiefprofile.img %}
+							<img src="{{ comment.1.user.chiefprofile.img.url }}" title="{{comment.1.user.first_name}} {{comment.1.user.last_name}}">
+							{% else %}
+							<i class="fa fa-user-circle" title="{{comment.1.user.first_name}} {{comment.1.user.last_name}}"></i>
+							{% endif %}
+						</div>
+
+						<!-- start comment container -->
+						<div class="comm" id="comm_{{comment.1.id}}">
+							<pre>{{comment.1.comment}}</pre>
+							<p title="{{comment.1.timeStamp}}">
+								{% if reply.0 == '0seconds' %}
+									now
+								{% elif comment.0 == '1days' %}
+									Yesterday
+								{% elif comment.0 == '1hours' %}
+									1hour
+								{% elif comment.0 == '1minutes' %}
+									1minute
+								{% else %}
+									{{comment.0}}
+								{% endif %}
+								{% if request.user.is_authenticated and not request.user.is_superuser %}
+								<a href="#" class="reply">Reply</a>
+
+								<a href="#" redirect="/meal/{{comment.1.id}}/like-comment"
+								   id="l{{comment.1.id}}" class="comment_like {% if comment.3 and comment.3.0.react_value %}sss{% endif %}"
+								   value="{% if comment.3 and comment.3.0.react_value %}false{% else %}true{% endif %}">Like</a>
+								{% endif %}
+							</p>
+
+							<!-- start reply container -->
+							<div class="replys">
+							{% if comment.2 %}
+								<a href="#" class="view_replys">View replys <i class="fa fa-arrow-right"></i></a>
+								{% for reply in comment.2 %}
+								<div class="col-xs-12 block" id="container_{{reply.1.id}}">
+									<div class="image">
+										{% if reply.1.user.userprofile.img %}
+										<img src="{{ reply.1.user.userprofile.img.url }}" title="{{reply.1.user.first_name}} {{reply.1.user.last_name}}">
+										{% else %}
+										<i class="fa fa-user-circle" title="{{reply.1.user.first_name}} {{reply.1.user.last_name}}"></i>
+										{% endif %}
+									</div>
+
+									<div class="comm" id="comm_{{reply.1.id}}">
+										<pre>{{reply.1.reply}}</pre>
+										<p title="{{reply.1.timeStamp}}">
+											{% if reply.0 == '0seconds' %}
+												now
+											{% elif reply.0 == '1days' %}
+												Yesterday
+											{% elif reply.0 == '1hours' %}
+												1hour
+											{% elif reply.0 == '1minutes' %}
+												1minute
+											{% else %}
+												{{reply.0}}
+											{% endif %}
+
+											{% if request.user.is_authenticated and not request.user.is_superuser %}
+											<a href="#" redirect="/meal/{{reply.1.id}}/like-reply" id="l{{reply.1.id}}"
+											   class="reply_like {% if reply.2 and reply.2.0.react_value %}sss{% endif %}"
+											   value="{% if reply.2 and reply.2.0.react_value %}false{% else %}true{% endif %}">like</a>
+											{% endif %}
+										</p>
+									</div>
+								</div>
+								{% endfor %}
+							{% endif %}
+							<!-- start reply form -->
+								{% if request.user.is_authenticated and not request.user.is_superuser %}
+								<form onsubmit="return false;" class="col-sm-8 col-sm-push-4 replyFun" method="GET" first_redirect="/meal/{{comment.1.id}}/reply-comment" action="" id="{{comment.1.id}}">
+									<textarea name="comm" id="id_reply_{{comment.1.id}}" placeholder="رأيك يهمنا..." class="col-xs-10 col-xs-push-2" autocomplete="off"></textarea>
+									<button type="submit" class="col-xs-2 col-xs-pull-10 submit text-center">تعليق <i class="fa fa-send"></i></button>
+								</form>
+								{% endif %}
+								<!-- end reply form -->
+							</div>
+							<!-- end reply container -->
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				{% if request.user.is_authenticated and not request.user.is_superuser %}
+				<form onsubmit="return false;" class="col-sm-8 col-sm-push-4 commentFun" method="GET" first_redirect="/meal/{{meal.id}}/comment" action="">
+					<textarea name="comm" id="id_comment" placeholder="رأيك يهمنا..." class="col-xs-10 col-xs-push-2" autocomplete="off"></textarea>
+					<button type="submit" class="col-xs-2 col-xs-pull-10 submit text-center">تعليق <i class="fa fa-send"></i></button>
+				</form>
+				{% endif %}
+        	</div>
+        </section>
+        {% endblock content %}
+
+		{% block javascript %}
+		<script src="{% static 'js/meal.js' %}"></script>
+		{% endblock %}

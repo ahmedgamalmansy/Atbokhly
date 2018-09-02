@@ -1,0 +1,98 @@
+{% extends 'base/base_chief.html' %}
+{% block title %}{{meal}}{{ing}}{{cat}}s{% endblock title %}
+{% block css %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">
+    <style>
+
+    </style>
+{% endblock css %}
+
+{% block content %}
+    <section class="objs">
+        <div class="container">
+            {% if request.user.is_superuser %}
+            {% if meal %}
+                <a href="{% url 'meal:addmeal' request.user.pk %}" class="add">اضافة وجبة</a>
+            {% elif ing %}
+                <a href="{% url 'admin_pannel:add-ingredient' %}" class="add">اضافة مكون</a>
+            {% else %}
+                <a href="{% url 'admin_pannel:add-category' %}" class="add">اضافة قسم</a>
+            {% endif %}
+            {% for obj in object_list %}
+            <div class="col-xs-12 meal_obj" id="{{s.id}}">
+
+                {% if meal %}
+
+                <div class="conform_delete_popup text-center" id="confirm_delete_{{obj.id}}">
+                    <div class="col-lg-4 col-sm-6 col-xs-10 col-lg-offset-4 col-sm-offset-3 col-xs-offset-1 delete_confirm">
+                        <p>Are you sure you wanna delete this item?</p>
+                        <a href="#" class="close_popup">Close</a>
+                        <a href="{% url 'meal:deletemeal' obj.id %}">Delete</a>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+
+                    <a href="{% url 'meal:meal' obj.id %}">رؤية الوجبة</a>
+                    |
+                    <a href="#" class="delete" id="{{obj.id}}">حذف</a>
+                    {% if obj.meal_owner == request.user %}
+                    |
+                    <a href="{% url 'meal:update-emeal' obj.id %}">تعديل</a>
+                    {% endif %}
+                </div>
+
+                <div class="col-xs-6">
+                    <span>{{obj}}</span>
+                </div>
+
+                {% elif ing %}
+
+                <div class="conform_delete_popup text-center" id="confirm_delete_{{obj.id}}">
+                    <div class="col-lg-4 col-sm-6 col-xs-10 col-lg-offset-4 col-sm-offset-3 col-xs-offset-1 delete_confirm">
+                        <p>Are you sure you wanna delete this item?</p>
+                        <a href="#" class="close_popup">Close</a>
+                        <a href="{% url 'admin_pannel:delete-ingredient' obj.id %}">Delete</a>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <a href="{% url 'admin_pannel:edit-ingredient' obj.id %}">تـعـديـل</a>
+                    |
+                    <a href="#" class="delete" id="{{obj.id}}">حذف</a>
+                </div>
+
+                <div class="col-xs-6">
+                    <span>{{obj}}</span>
+                </div>
+
+                {% else %}
+
+                <div class="conform_delete_popup text-center" id="confirm_delete_{{obj.id}}">
+                    <div class="col-lg-4 col-sm-6 col-xs-10 col-lg-offset-4 col-sm-offset-3 col-xs-offset-1 delete_confirm">
+                        <p>Are you sure you wanna delete this item?</p>
+                        <a href="#" class="close_popup">Close</a>
+                        <a href="{% url 'admin_pannel:delete-category' obj.id %}">Delete</a>
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <a href="{% url 'admin_pannel:edit-category' obj.id %}">تـعـديـل</a>
+                    |
+                    <a href="#" class="delete" id="{{obj.id}}">حذف</a>
+                </div>
+
+                <div class="col-xs-6">
+                    <span>{{obj}}</span>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/delete_confirm.js' %}"></script>
+{% endblock javascript %}

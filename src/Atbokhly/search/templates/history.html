@@ -1,0 +1,66 @@
+{% extends 'base/base_chief.html' %}
+
+        {% block title %} history{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/history.css' %}">
+        {% endblock css %}
+
+        {% block content %}
+        <section class="history">
+            <div class="container">
+                <div class="row">
+                    <h1>HISTORY</h1>
+                    <div class="clear_link"><a href="#" id="clear">clear all history</a></div>
+                    <div class="clear_confirm">
+                        <form class="col-sm-4 col-xs-10 col-sm-offset-4 col-xs-offset-1 text-center clear_form" first_redirect="/search/clear">
+                            <i class="fa fa-close fa-lg" id="close_form"></i>
+                            <p>هل أنت متاكد من حذف التاريخ ؟!</p>
+                            <div class="btn btn-primary" id="clear_all">تأكيد</div>
+                            <div class="btn btn-primary" id="form_close_btn">إلغاء</div>
+                        </form>
+                    </div>
+
+                    {% for trans in transactions %}
+                    <div class="col-md-3 col-sm-4 col-xs-12 transaction" id="{{trans.id}}">
+                        <div class="block text-center">
+                            <form class="delFun" method="GET" first_redirect="/search/delete-transaction/{{trans.id}}" second_redirect="/Home">
+                                <i class="fa fa-close fa-lg delete_trans" title="delete" id="{{trans.id}}1" ></i>
+                            </form>
+                            <p class="time">{{trans.time}}</p>
+                            <a href="/search/result/{{trans.id}}">
+                                <div class="search_context">
+                                    <h2>البحث</h2>
+                                    <span>
+                                        {% if trans.search_context|length > 50 %}
+                                        {{trans.search_context|slice:'50'}}....
+                                        {% else %}
+                                        {{trans.search_context}}
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="result meals_imgs" id="meals_imgs">
+                                    <h2>*الوجبات*</h2>
+    <!--                                    <h2>*نتيجة البحث*</h2>-->
+                                    {% for i in trans.result.all %}
+                                    <div class="meal"  title="{{ i.meal_name }}">
+                                        <span>
+                                            {% if i.meal_name|length > 6 %}{{ i.meal_name | slice:"5" }}... {% else %}{{ i.meal_name }}{% endif %}
+                                        </span>
+                                        <img src="{{ i.img.url }}">
+                                    </div>
+                                    {% empty %}
+                                    <span>لم تظهر اى وجبات بهذا البحث</span>
+                                    {% endfor %}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if not transactions %}
+                    <h2 class="text-center">You have no history</h2>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        {% endblock content %}

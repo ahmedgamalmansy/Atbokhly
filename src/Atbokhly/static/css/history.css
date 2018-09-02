@@ -1,0 +1,230 @@
+/**** E43A19 ****/
+body {
+  background: url(../images/basil-delicious-food-459469.jpg) no-repeat center center fixed;
+  background-size: 100% 100%;
+}
+
+* {
+  font-family: Microsoft Sans Serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+a, a:hover, a:focus {
+  text-decoration: none;
+}
+
+.scroll_up {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  display: none;
+  z-index: 9999;
+}
+.scroll_up i {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background: #1B435D;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  font-size: 2.3em;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.scroll_up i:hover {
+  color: #1B435D;
+  background: #fff;
+}
+
+.history {
+  min-height: 600px;
+  margin-top: 100px;
+  direction: rtl;
+}
+.history .container h1 {
+  background: rgba(1, 1, 1, 0.7);
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+}
+.history .container .clear_link {
+  width: 100%;
+  padding: 10px;
+}
+.history .container .clear_link #clear {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: Microsoft Sans Serif;
+  padding: 5px 10px;
+  background: #1B435D;
+  color: #fff;
+  border: 1px solid #1B435D;
+  border-radius: 5px;
+}
+.history .container .clear_confirm {
+  display: none;
+  direction: ltr;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 1, 1, 0.5);
+  top: 0;
+  right: 0;
+  z-index: 999999;
+}
+.history .container .clear_confirm form {
+  background: #fff;
+  position: absolute;
+  top: 30%;
+  padding: 50px 20px;
+  border-radius: 5px;
+}
+.history .container .clear_confirm form i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #1B435D;
+  padding: 1px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.history .container .clear_confirm form p {
+  font-size: 30px;
+  color: red;
+}
+.history .container .clear_confirm form button, .history .container .clear_confirm form div {
+  width: 100px;
+  background: #1B435D;
+}
+.history .container .transaction {
+  padding: 5px;
+  z-index: 1;
+  display: flex;
+}
+.history .container .transaction .block {
+  width: 100%;
+  background: #eee;
+  height: 320px;
+  border: 1px solid #1B435D;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  padding: 10px 5px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.history .container .transaction .block form {
+  float: right;
+  padding-right: 10px;
+  cursor: pointer;
+}
+.history .container .transaction .block form i {
+  border: 1px solid #1B435D;
+  padding: 1px;
+  border-radius: 2px;
+}
+.history .container .transaction .block .time {
+  color: #333;
+  font-size: 16px;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+.history .container .transaction .block .search_context {
+  padding: 5px 0px;
+  height: 100px;
+  overflow: hidden;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.history .container .transaction .block .search_context h2 {
+  margin: 0px;
+  color: #fff;
+  background: #1B435D;
+  margin-bottom: 10px;
+}
+.history .container .transaction .block .search_context span {
+  color: #001dff;
+  font-size: 18px;
+  word-wrap: break-word;
+}
+.history .container .transaction .block .result {
+  border-top: 1px solid #1B435D;
+  padding: 10px 0px;
+  max-height: 170px;
+  overflow: auto;
+}
+.history .container .transaction .block .result h2 {
+  margin: 0px;
+  color: #1B435D;
+  position: relative;
+  margin-bottom: 10px;
+  /*
+  &:after{
+      content: '______________________';
+      width: 40%;
+      overflow: hidden;
+      position: absolute;
+      bottom: 0px;
+      left: 30%;
+      font-size: 16px;
+      font-weight: bold;
+  }*/
+}
+.history .container .transaction .block .result .meal {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 2px;
+  border: 1px solid #1B435D;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.history .container .transaction .block .result .meal span {
+  display: block;
+  border-bottom: 1px solid #1B435D;
+  font-size: 14px;
+  height: 20px;
+}
+.history .container .transaction .block .result .meal img {
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+.history .container .transaction .block:hover {
+  transform: scale(1.05);
+  background: #ddd;
+  border-radius: 10px;
+  z-index: 9999;
+}
+.history .container .transaction .block:hover .time {
+  background: #eee;
+}
+
+@media (max-width: 767px) and (min-width: 480px) {
+  .history {
+    margin-top: 150px;
+  }
+  .history .container {
+    width: 90%;
+  }
+  .history .container .transaction {
+    width: 50%;
+  }
+}
+
+/*# sourceMappingURL=history.css.map */

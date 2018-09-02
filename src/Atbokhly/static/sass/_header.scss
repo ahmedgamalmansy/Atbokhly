@@ -1,0 +1,222 @@
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: $mainColor;
+    height: 70px;
+    padding: 15px 0px;
+    z-index: 999;
+    direction: rtl;
+    .tgl_btn{
+        padding-right: 100px;
+        .authenticate{
+            float: left;
+            a{
+                color: $secondColor;
+                font-size: 18px;
+                line-height: 30px;
+                font-family: Microsoft Sans Serif;
+                @include transition(all, .3s, linear);
+                &:hover{
+                    color: #aaa;
+                }
+            }
+            .signingForm{
+                display: none;
+                position: absolute;
+                background: $secondColor;
+                top: 55px;
+                right: 50px;
+                padding: 20px;
+                min-width: 300px;
+                .choice{
+                    ul{
+                        .login{
+                            border-left: 1px solid #ddd;
+                        }
+                        li {
+                            display: inline-block;
+                            width: 45%;
+                            a{
+                                color: $mainColor;
+                            }
+                        }
+                    }
+                }
+                .form{
+                    border-top: 1px solid #ddd;
+                    padding-top: 10px;
+                    #loginform{
+                        &::before{
+                            right: 30%;
+                        }
+                    }
+                    #loginform,#signupform{
+                        input{
+                            width: 100%;
+                            margin-bottom: 5px;
+                            border: 1px solid #ddd;
+                            padding: 5px;
+                            text-indent: 10px;
+                            font-size: 15px;
+                            font-family: 'Lato',sans-serif;
+                        }
+                        input[type="text"],input[type="password"]{
+                            &:focus{
+                                border-color: $lastColor;
+                            }
+                        }
+                        input[type="submit"]{
+                            background: $mainColor;
+                            border-color: $mainColor;
+                            color: $secondColor;
+                            font-size: 18px;
+                            font-weight: 700;
+                            letter-spacing: 1px;
+                            @include transition(all, .3s, linear);
+                            &:hover{
+                                background: $secondColor;
+                                color: $lastColor;
+                                letter-spacing: 2px;
+                                box-shadow: 2px 2px 5px $mainColor,-2px -2px 5px $mainColor;
+                            }
+                        }
+                        
+                        &::before{
+                            content: '\f0d8';
+                            font-family: FontAwesome;
+                            font-size: 2em;
+                            color: $mainColor;
+                            position: absolute;
+                            top: 35px;
+                        }
+                    }
+                    #signupform{
+                        display: none;
+                        input{
+                            width: 100%;
+                            margin-bottom: 5px;
+                            padding: 5px;
+                            text-indent: 10px;
+                            font-size: 15px;
+                            font-family: 'Lato',sans-serif;
+                        }
+                        input[type="email"]{
+                            &:focus{
+                                border-color: $lastColor;
+                            }
+                        }
+                        &::before{
+                            left: 30%;
+                        }
+                    }
+                }
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: -5px;
+                    left: 25%;
+                    width: 40px;
+                    height: 25px;
+                    background: $secondColor;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+        button{
+            float: right;
+            background: none;
+            border: none;
+            position: relative;
+            i{
+                color: $secondColor;
+                font-size: 2em;
+                line-height: 30px;
+            }
+            span{
+                color: $secondColor;
+                font-size: 25px;
+                line-height: 30px;
+                font-weight: bold;
+                font-family: Microsoft Sans Serif;
+                margin-left: 5px;
+                position: absolute;
+                top: 0;
+                left: 35px;
+            }
+        }
+    }
+    
+    .meal_search{
+        direction: ltr;
+        margin-bottom: 15px;
+        input{
+            width: 80%;
+            text-indent: 10px;
+            padding: 5px 0px;
+            font-size: 16px;
+            border: 1px solid $mainColor;
+            margin-right: -10px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        button{
+            width: 10%;
+            min-width: 50px;
+            padding: 5px 0px;
+            font-size: 16px;
+            background: #eee;
+            border: 1px solid #0a0d33;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background: #0a0d33;
+            color: $secondColor;
+            @include transition(all, .3s, linear);
+            &:hover{
+                box-shadow: 2px 2px 5px $mainColor,0px 0px 5px $mainColor;
+            }
+        }
+    }
+    
+    .logo{
+        text-align: left;
+        padding-left: 30px;
+        a{
+            font-weight: bold;
+            font-size: 25px;
+            color: $secondColor;
+            padding: 10px 0px;
+        }
+    }
+    
+}
+
+
+@media (max-width: 767px){
+    header{
+        height: 100px;
+        .tgl_btn{
+            padding-right: 20px;
+            .authenticate a{
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px){
+    header {
+        .logo a{
+            font-size: 20px;
+            line-height: 35px;
+        }
+        .tgl_btn .authenticate .signingForm{
+            right: 15px;
+            //min-width: 280px;
+            &::before{
+                left: auto;
+                right: 40% ;
+            }
+        }
+    }
+}

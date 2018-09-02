@@ -1,0 +1,170 @@
+/**** E43A19 ****/
+.login, .register {
+  margin-top: 100px;
+  padding: 0px 50px;
+  min-height: 600px;
+}
+.login .title, .register .title {
+  background: #ddd;
+  width: 80%;
+  margin: auto;
+  border-radius: 2px;
+}
+.login .title h1, .register .title h1 {
+  padding: 5px;
+  color: #1B435D;
+}
+.login .title h1 span, .register .title h1 span {
+  font-weight: bold;
+  color: #f0f;
+}
+.login .form, .register .form {
+  border-radius: 15px;
+  background: url(../images/9.jpg) no-repeat center center;
+  background-size: cover;
+  position: relative;
+  min-height: 500px;
+  width: 80%;
+  margin: 30px auto;
+  padding: 50px 0px;
+}
+.login .form form, .register .form form {
+  width: 40%;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 50px 25px;
+  border-radius: 10px;
+  z-index: 99;
+  margin: auto;
+  direction: rtl;
+}
+.login .form form .alert, .register .form form .alert {
+  padding: 5px;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+.login .form form .alert ul, .register .form form .alert ul {
+  float: right;
+  margin: 0px;
+  padding: 0px 10px;
+}
+.login .form form .alert ul li, .register .form form .alert ul li {
+  list-style: none;
+}
+.login .form form p, .register .form form p {
+  color: #1B435D;
+  font-size: 20px;
+}
+.login .form form div, .register .form form div {
+  padding: 0px;
+  position: relative;
+}
+.login .form form div i, .register .form form div i {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  color: #1B435D;
+}
+.login .form form .name, .register .form form .name {
+  padding-right: 5px;
+}
+.login .form form input, .register .form form input {
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-indent: 10px;
+  padding: 5px;
+  width: 100%;
+  color: #1B435D;
+  border: 1px solid #1B435D;
+  border-radius: 3px;
+}
+.login .form form input:focus, .register .form form input:focus {
+  border-color: #f0f;
+}
+.login .form form input:focus .input i, .register .form form input:focus .input i {
+  color: #f0f;
+}
+.login .form form input[type="radio"], .register .form form input[type="radio"] {
+  transform: scale(2);
+}
+.login .form form input[type="radio"]:focus, .register .form form input[type="radio"]:focus {
+  outline: none;
+}
+.login .form form input[type="file"], .register .form form input[type="file"] {
+  display: none;
+}
+.login .form form input[type="submit"], .register .form form input[type="submit"] {
+  background: #1B435D;
+  border: none;
+  margin-top: 10px;
+  padding: 10px 5px;
+  color: #fff;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.login .form form input[type="submit"]:hover, .register .form form input[type="submit"]:hover {
+  box-shadow: 1px 1px 10px #1B435D, -1px -1px 10px #1B435D;
+  letter-spacing: 1px;
+  background: #fff;
+  color: #f0f;
+  font-weight: bold;
+}
+.login .form form a, .register .form form a {
+  font-size: 15px;
+  color: #1B435D;
+  border: 1px solid #1B435D;
+  padding: 5px 10px;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.login .form form a:hover, .register .form form a:hover {
+  color: #f0f;
+  box-shadow: 2px 2px 5px #1B435D, -2px -2px 5px #1B435D;
+  background: #fff;
+}
+
+/*=========================
+    media query
+==========================*/
+@media (max-width: 991px) {
+  .login .form form, .register .form form {
+    width: 60%;
+    left: 15%;
+  }
+}
+@media (max-width: 767px) {
+  .login, .register {
+    padding: 20px 0px;
+  }
+  .login .title, .register .title {
+    width: 100%;
+  }
+  .login .title h1, .register .title h1 {
+    font-size: 25px;
+  }
+  .login .container, .register .container {
+    width: 90%;
+  }
+  .login .container .form, .register .container .form {
+    width: 100%;
+  }
+  .login .container .form form, .register .container .form form {
+    width: 90%;
+    left: 15%;
+  }
+  .login .container .form form .name, .register .container .form form .name {
+    padding-right: 0px;
+  }
+}
+@media (max-width: 480px) {
+  .login .container .form form a {
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+/*# sourceMappingURL=login.css.map */

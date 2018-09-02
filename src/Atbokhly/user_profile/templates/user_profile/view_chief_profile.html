@@ -1,0 +1,84 @@
+{% extends 'base/base_chief.html' %}
+        {% block title %}View Profile{% endblock title %}
+        {% block css %}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/profile_view.css' %}">
+        {% endblock css %}
+{% block content %}
+    <section class="profile">
+        <div class="container">
+            <h1>الملف الشخصي</h1>
+            <div class="col-xs-12 info">
+                {% for user in users %}
+                <div class="col-sm-4 col-sm-push-8 img text-center">
+                    {% if user.img %}
+                    <a href="{{ user.img.url }}" target="_blank"><img src="{{ user.img.url }}"></a>
+                    {% else %}
+                    {% load static %}
+                    <i class="fa fa-user-circle" title="{{user.first_name}} {{user.last_name}}"></i>
+                    {% endif %}
+                </div>
+                <div class="col-sm-8 col-sm-pull-4 data">
+                    {% if user and not user.is_superuser %}
+                        <p><span class="title">اســم المسـتخـدم</span> <span>{{ user.user }}</span> </p>
+                    {% else %}
+                        <p><span class="title">اســم المسـتخـدم</span> <span>{{ user }}</span> </p>
+                    {% endif %}
+
+                    {% if user.first_name %}
+                        <p><span class="title">الاســم </span> <span>{{ user.first_name }} {{ user.last_name }}</span> </p>
+                    {% endif %}
+
+                    {% if user.email %}
+                    <p><span class="title">البريد الالكترونى</span> <span>{{ user.email }}</span></p>
+                    {% endif %}
+
+                    {% if user.gender %}
+                    <p><span class="title">الـجـنـس</span> <span>{{ user.gender }}</span> </p>
+                    {% endif %}
+
+                    {% if user.phone %}
+                    <p><span class="title">الهــاتـف</span> <span>{{ user.phone }}</span> </p>
+                    {% endif %}
+
+                    {% if user.date_birth %}
+                    <p><span class="title">تاريخ الميلاد</span><span> {{ user.date_birth }}</span> </p>
+                    {% endif %}
+
+                    {% if user and user.is_superuser %}
+                    <h1>Admin</h1>
+                    {% endif %}
+                </div>
+
+                <div class="col-xs-12 cv">
+                    <hr>
+                    <p>
+                        {% if user.cv %}
+                        <a href="{{user.cv.url}}" target="_blank">السيرة الذاتية</a>
+                        {% endif %}
+
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.id == user.user.id and request.user.groups.all.0.name == 'chiefs' %}
+                                <a href="/{{user.user.id}}/update-profile">تعديل البروفايل</a>
+
+                            {% elif request.user.id == user.user.id and request.user.groups.all.0.name == 'normal_users' %}
+                                <a href="/{{user.user.id}}/update-user-profile">تعديل البروفايل</a>
+
+                            {% elif request.user.id == user.id and request.user.is_superuser %}
+                                <a href="{% url 'admin_pannel:update-profile' user.pk %}">تعديل البروفايل</a>
+                            {% endif %}
+                        {% else %}
+                            {% if user.is_superuser %}
+                            <a href="/view-chief-meals/{{user.id}}">رؤية الوجبات</a>
+                            {% else %}
+                            <a href="/view-chief-meals/{{user.user.id}}">رؤية الوجبات</a>
+                            {% endif %}
+                        {% endif %}
+
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

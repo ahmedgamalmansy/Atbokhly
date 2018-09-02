@@ -1,0 +1,91 @@
+/**** E43A19 ****/
+.update_sec {
+  margin-top: 100px;
+  min-height: 600px;
+}
+.update_sec form {
+  background: rgba(1, 1, 1, 0.7);
+  padding: 30px 50px;
+  border-radius: 20px;
+  width: 50%;
+  margin: auto;
+}
+.update_sec form h2 {
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+}
+.update_sec form p {
+  color: #ddd;
+  text-align: center;
+}
+.update_sec form input {
+  width: 100%;
+  display: inline-block;
+  background: transparent;
+  padding: 5px;
+  text-indent: 10px;
+  border: 1px solid #1B435D;
+  color: #1B435D;
+  font-size: 16px;
+  font-weight: 600;
+}
+.update_sec form label {
+  color: #eee;
+  display: block;
+}
+.update_sec form span {
+  padding: 10px;
+  color: #fff;
+}
+.update_sec form span ul {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 15px;
+}
+.update_sec form span ul li {
+  color: #ddd;
+}
+.update_sec form .errorlist li {
+  color: red;
+}
+.update_sec form button {
+  width: 40%;
+  margin: 20px 30%;
+  background: #1B435D;
+  border: 1px solid #1B435D;
+  padding: 5px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 700;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+.update_sec form button:hover {
+  color: #1B435D;
+  background: #fff;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 767px) {
+  .update_sec {
+    margin-top: 150px;
+  }
+  .update_sec form {
+    width: 80%;
+  }
+  .update_sec form button {
+    margin: 20px auto;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .update_sec form {
+    padding: 30px 10px;
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=change_pass.css.map */
